@@ -17,8 +17,8 @@ CREATE TABLE Utente(
 CREATE TABLE Set_Lego(
 	Codice_Set INT AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(255) NOT NULL,
-    Anno_Uscita DATE NOT NULL,
-    Anno_Ritiro DATE,
+    Anno_Uscita INT NOT NULL,
+    Anno_Ritiro INT,
     N_Pezzi INT NOT NULL,
     Descrizione VARCHAR(1000) NOT NULL,
     Prezzo DECIMAL(10,2) NOT NULL,
