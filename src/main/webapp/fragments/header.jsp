@@ -3,7 +3,9 @@
 <header>
 	<div class="top-bar">
 		<div class="logo">
-			<a href="index.jsp">BrickCaveau</a>
+			<a href="index.jsp">
+			<img src="images/logo.png" alt="Logo BrickCaveau" class="logo-img">
+			</a>
 		</div>
 		
 		<div class="search">

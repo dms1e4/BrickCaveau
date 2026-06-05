@@ -20,4 +20,4 @@
 	<div class="footer-bottom">
 		<p>&copy; BrickCaveau - 08-SA. Tutti i diritti riservati.</p>
 	</div>
-</footer>>
+</footer>

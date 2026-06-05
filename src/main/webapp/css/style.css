@@ -37,6 +37,8 @@ header {
 	font-size: 1.8rem;
 	font-weight: bold;
 	color: #C8102E;
+	display: flex;
+	align-items: center;
 }
 
 .nav-header {
@@ -60,6 +62,14 @@ header {
 .nav-header a:hover{
 	color: #F2A900;
 }
+
+.logo-img {
+	max-height: 50px;
+	width: auto;
+	display: block;
+	border: 10px solid white;
+}
+
 
 /* FOOTER */
 
