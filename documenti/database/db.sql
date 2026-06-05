@@ -22,6 +22,7 @@ CREATE TABLE Set_Lego(
     N_Pezzi INT NOT NULL,
     Descrizione VARCHAR(1000) NOT NULL,
     Prezzo DECIMAL(10,2) NOT NULL,
+	IVA DECIMAL(4,2) NOT NULL DEFAULT 22.00,
     Tema VARCHAR(50) NOT NULL,
     Quantita_Magazzino INT NOT NULL
 );
