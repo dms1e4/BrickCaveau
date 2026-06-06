@@ -43,7 +43,8 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
         // Controllo lato server (Integrità dati)
         if (nome == null || cognome == null || email == null || password == null || telefono == null ||
             nome.trim().isEmpty() || cognome.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty() || telefono.trim().isEmpty()) {
-            response.sendRedirect(request.getContextPath() + "/register.jsp?error=campivuoti");
+            // CORRETTO: punta a registrazione.jsp
+            response.sendRedirect(request.getContextPath() + "/registrazione.jsp?error=campivuoti");
             return;
         }
 
@@ -52,7 +53,8 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
             
             // Ultimo controllo di sicurezza: l'email esiste già?
             if (utenteDAO.doRetrieveByEmail(email) != null) {
-                response.sendRedirect(request.getContextPath() + "/register.jsp?error=emailduplicata");
+                // CORRETTO: punta a registrazione.jsp
+                response.sendRedirect(request.getContextPath() + "/registrazione.jsp?error=emailduplicata");
                 return;
             }
 
@@ -73,7 +75,8 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/register.jsp?error=dberror");
+            // CORRETTO: punta a registrazione.jsp (o volendo a /errori/500.jsp)
+            response.sendRedirect(request.getContextPath() + "/registrazione.jsp?error=dberror");
         }
     }
 
