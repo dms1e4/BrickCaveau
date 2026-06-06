@@ -1,8 +1,9 @@
 package control;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import javax.servlet.http.HttpServletRequestWrapper;
 import model.Utente.UtenteBean;
 import model.Utente.UtenteDAO;
 
@@ -30,7 +31,7 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequestWrapper request, HttpServletRequestWrapper response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
         String nome = request.getParameter("nome");

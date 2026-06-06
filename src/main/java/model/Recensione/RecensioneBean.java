@@ -1,4 +1,4 @@
-package model;
+package model.Recensione;
 
 import java.io.Serializable;
 import java.sql.Date;

@@ -1,8 +1,11 @@
-package model;
+package model.Utente;
 
 import java.sql.*;
+
 import java.util.*;
 import javax.sql.DataSource;
+
+import model.DAOInterface;
 
 public class UtenteDAO implements DAOInterface<UtenteBean, Integer> {
 

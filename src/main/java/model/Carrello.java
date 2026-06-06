@@ -5,6 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.SetLego.SetLegoBean;
+
 public class Carrello implements Serializable {
     private static final long serialVersionUID = 1L;
 

@@ -1,4 +1,4 @@
-package model;
+package model.Utente;
 
 import java.io.Serializable;
 

@@ -1,8 +1,12 @@
-package model;
+package model.SetLego;
 
 import java.sql.*;
+
+
 import java.util.*;
 import javax.sql.DataSource;
+
+import model.DAOInterface;
 
 public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
 

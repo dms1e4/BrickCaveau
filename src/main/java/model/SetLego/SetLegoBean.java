@@ -1,4 +1,4 @@
-package model;
+package model.SetLego;
 
 import java.io.Serializable;
 
