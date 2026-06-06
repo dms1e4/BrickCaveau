@@ -12,7 +12,12 @@
 
     <main class="login-container">
         <h2>Accedi al tuo Caveau</h2>
-        
+        <%-- Messaggio di conferma post-registrazione --%>
+<c:if test="${param.status == 'registrato'}">
+    <p class="text-success" style="color: #16A34A; font-weight: bold; text-align: center;">
+        Registrazione completata con successo! Ora puoi accedere.
+    </p>
+</c:if>
         <%-- Intercettazione degli errori dalla LoginServlet --%>
         <c:if test="${param.error == 'invalid'}">
             <p style="color: red; font-weight: bold;">Credenziali errate. Riprova.</p>
