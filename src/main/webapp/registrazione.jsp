@@ -38,7 +38,17 @@
                     <option value="+39" selected>🇮🇹 +39</option>
                     <option value="+378">🇸🇲 +378</option>
                     <option value="+41">🇨🇭 +41</option>
+                    <option value="+43">🇦🇹 +43</option>
+                    <option value="+33">🇫🇷 +33</option>
+                    <option value="+49">🇩🇪 +49</option>
+                    <option value="+32">🇧🇪 +32</option>
+                    <option value="+31">🇳🇱 +31</option>
+                    <option value="+34">🇪🇸 +34</option>
+                    <option value="+44">🇬🇧 +44</option>
                     <option value="+1">🇺🇸 +1</option>
+                    <option value="+86">🇨🇳 +86</option>
+                    <option value="+61">🇦🇺 +61</option>
+                    <option value="+81">🇯🇵 +81</option>
                 </select>
                 <input type="text" name="telefono" id="telefono" placeholder="Es. 3331234567" required>
             </div>
