@@ -7,6 +7,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (!form) return;
 
+    // --- REGEX FONDAMENTALI ---
+    const regexLettere = /^[a-zA-ZÀ-ÿ\s']{2,50}$/; 
+    const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Obbliga la presenza di @ e dominio
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/; // Minimo 8 caratteri, almeno 1 lettera maiuscola, 1 numero, 1 carattere speciale
+    const regexTelefono = /^[0-9]{9,10}$/; // 9-10 cifre senza prefisso
+    
     /*chiamata Fetch API*/
     
     // L'evento 'blur' scatta non appena l'utente clicca fuori dal campo email
@@ -19,6 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
 
+        // Controllo Regex PRIMA di interrogare il server
+        if (!regexEmail.test(emailValue)) {
+            emailFeedback.textContent = "Formato email non valido (es. manca @ o dominio).";
+            emailFeedback.style.color = "#DC2626";
+            return;
+        }
+        
         // Chiamata asincrona al server
         const url = "checkEmailServlet?email=" + encodeURIComponent(emailValue);
 
@@ -50,14 +63,12 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("errorPassword").textContent = "";
         document.getElementById("errorTelefono").textContent = "";
 
+        if (emailFeedback.textContent.includes("non valido") || emailFeedback.textContent.includes("Errore")) {
+            emailFeedback.textContent = ""; 
+        }
+        
         let formValido = true;
         let primoCampoErrato = null; 
-
-        
-        const regexLettere = /^[a-zA-ZÀ-ÿ\s']{2,50}$/; // Solo lettere, spazi e apostrofi (min 2, max 50)
-        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Formato standard email
-        const regexPassword = /^.{8,}$/; // Almeno 8 caratteri qualsiasi
-        const regexTelefono = /^[0-9]{9,10}$/; // Solo numeri, da 9 a 10 cifre
 
         // Controllo Nome
         const inputNome = document.getElementById("nome");
@@ -85,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         
         // se l'email era già in uso
-        if (emailFeedback.textContent.includes("già registrata")) {
+        if (emailFeedback.textContent.includes("Email già registrata")) {
             formValido = false;
             if (!primoCampoErrato) primoCampoErrato = emailInput;
         }
@@ -93,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Controllo Password
         const inputPassword = document.getElementById("password");
         if (!regexPassword.test(inputPassword.value.trim())) {
-            document.getElementById("errorPassword").textContent = "La password deve contenere almeno 8 caratteri.";
+            document.getElementById("errorPassword").textContent = "La password deve avere min 8 caratteri, 1 maiuscola, 1 numero e 1 carattere speciale.";
             formValido = false;
             if (!primoCampoErrato) primoCampoErrato = inputPassword;
         }
@@ -108,10 +119,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
         
         if (!formValido) {
-            
             primoCampoErrato.focus();
         } else {
-            
             form.submit();
         }
     });
