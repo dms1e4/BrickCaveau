@@ -29,7 +29,7 @@
     
     <nav class="nav-header">
         <ul>
-            <li><a href="${pageContext.request.contextPath}/catalogo.jsp">Tutti i set</a></li>
+            <li><a href="${pageContext.request.contextPath}/catalogoServlet">Tutti i set</a></li>
         </ul>
     </nav>
 </header>
