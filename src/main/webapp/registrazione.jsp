@@ -29,7 +29,7 @@
             <span id="emailFeedback"></span><br>
 
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password" placeholder="Almeno 8 caratteri" required>
+            <input type="password" name="password" id="password" placeholder="8-30 caratteri" maxlength=30 required>
             <span id="errorPassword" class="testo-errore"></span><br>
 
             <label for="telefono">Telefono:</label>
