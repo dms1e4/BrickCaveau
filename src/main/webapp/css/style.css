@@ -90,10 +90,72 @@ header {
 	border: 1px solid #ccc;
 }
 
+/* CHI SIAMO */
+.about-container {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: white; /* Stacca dal grigino del body */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Effetto profondità leggero */
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.about-header h1 {
+    font-size: 2.5rem;
+    color: #C8102E; /* Il vostro rosso BrickCaveau */
+    margin-bottom: 10px;
+}
+
+.about-section {
+    margin-bottom: 30px;
+    background: #F8F9FA;
+    padding: 25px;
+    border-left: 5px solid #F2A900; /* Giallo LEGO per richiamare il tema */
+    border-radius: 4px;
+}
+
+.about-section h2 {
+    margin-top: 0;
+    color: #1E293B; /* Il blu scuro del vostro header */
+    margin-bottom: 15px;
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.team-member {
+    background: white;
+    border: 1px solid #E2E8F0;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    flex: 1 1 250px; /* Flexbox fluido per adattarsi allo schermo */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.team-member h3 {
+    margin: 10px 0 5px 0;
+    color: #1E293B;
+}
+
+.team-member p {
+    margin: 0;
+    color: #64748B;
+    font-size: 0.9em;
+}
 
 
 /* FOOTER */
-
 footer {
 	background-color: #1E293B;
 	color: #64748B;
