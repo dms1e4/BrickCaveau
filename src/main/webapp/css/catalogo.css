@@ -209,3 +209,31 @@ input[type="range"] {
         box-sizing: border-box;
     }
 }
+
+/* 🔥 NOVITÀ: Stile per il menu a tendina dell'ordinamento dentro la sidebar */
+.select-ordinamento {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #CBD5E1;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #0F172A;
+    background-color: #F8FAFC;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s;
+    box-sizing: border-box; /* Evita che esca dai bordi della sidebar */
+}
+
+.select-ordinamento:focus,
+.select-ordinamento:hover {
+    border-color: #C8102E;
+    background-color: #FFFFFF;
+}
+
+/* Ripristiniamo il margine del titolo principale */
+.contenuto-catalogo h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #0F172A;
+}
