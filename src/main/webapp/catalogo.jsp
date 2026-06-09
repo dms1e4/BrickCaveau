@@ -32,7 +32,7 @@
                         <div class="card-prodotto">
                             
                             
-                            <img src="${pageContext.request.contextPath}/images/sets/${set.codiceSet}.jpg" 
+                            <img src="${pageContext.request.contextPath}/images/Set/${set.codiceSet}_1.jpg" 
                                  onerror="this.src='${pageContext.request.contextPath}/images/logo.png'" 
                                  alt="Immagine ${set.nome}">
                             
@@ -40,7 +40,7 @@
                             <p class="prezzo">€ ${set.prezzo}</p>
                             
                             <div class="azioni-prodotto">
-                                <a href="${pageContext.request.contextPath}/dettaglioServlet?id=${set.codiceSet}" class="btn-secondario">Dettagli</a>
+                                <a href="${pageContext.request.contextPath}/ProdottoServlet?id=${set.codiceSet}" class="btn-secondario">Dettagli</a>
                                 
                                 <form action="${pageContext.request.contextPath}/gestioneCarrelloServlet" method="POST" style="margin: 0;">
                                     <input type="hidden" name="action" value="add">
