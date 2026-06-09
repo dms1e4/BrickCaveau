@@ -10,5 +10,5 @@
 	username="brick_user"
 	password="TSW_Brick2026!"
 	driverClassName="com.mysql.cj.jdbc.Driver"
-	url="jdbc:mysql://127.0.0.1:3306/brickcaveau?serverTimezone=UTC"/>
+	url="jdbc:mysql://127.0.0.1:3306/BrickCaveau?serverTimezone=UTC"/>
 </Context>
