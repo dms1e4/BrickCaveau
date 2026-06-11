@@ -196,4 +196,29 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
         bean.setQuantitaMagazzino(rs.getInt("Quantita_Magazzino"));
         return bean;
     }
+
+ // Metodo per la ricerca AJAX
+    public Collection<SetLegoBean> doRetrieveByName(String namePrefix) throws SQLException {
+        List<SetLegoBean> list = new ArrayList<>();
+        
+        // Controlla Nome OPPURE Tema
+        String query = "SELECT * FROM Set_Lego WHERE Nome LIKE ? OR Tema LIKE ? LIMIT 5"; 
+        
+        try (Connection con = ds.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            
+            String parametroRicerca = "%" + namePrefix + "%";
+            
+            ps.setString(1, parametroRicerca); // Va nel primo punto interrogativo (Nome)
+            ps.setString(2, parametroRicerca); // Va nel secondo punto interrogativo (Tema)
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    list.add(mapResultSetToBean(rs));
+                }
+            }
+        }
+        return list;
+    }
+
 }
