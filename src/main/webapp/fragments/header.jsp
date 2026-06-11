@@ -14,7 +14,7 @@
         </div>
         
         <div class="user-interaction">
-            <%-- Controllo dinamico della sessione --%>
+            <%-- controllo sessione --%>
             <c:choose>
                 <c:when test="${not empty sessionScope.utente}">
                     <a href="${pageContext.request.contextPath}/profilo.jsp" class="icona">Profilo</a>

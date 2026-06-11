@@ -1,0 +1,35 @@
+@charset "UTF-8";
+@import "style.css";
+
+main {
+	text-align: center;
+	padding: 100px 20px;
+}
+
+h1 {
+	 font-size: 80px;
+	 color: #d32f2f;
+	 margin: 0;
+}
+
+img {
+	max-width: 500px;
+	max-height: 281px;
+}
+
+h2 {
+	 margin-bottom: 20px;
+}
+
+div {
+	margin-top: 0px;
+}
+
+div a {
+	padding: 10px 20px;
+	text-decoration: none;
+}
+
+.btn-primario {
+	border: solid red 5px;
+}
