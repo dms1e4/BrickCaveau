@@ -18,7 +18,7 @@
         <p>La pagina che stai cercando non esiste.</p>
         
         <div>
-            <a href="${pageContext.request.contextPath}/catalogo.jsp" class="btn-primario">Esplora il Catalogo</a>
+            <a href="${pageContext.request.contextPath}/catalogoServlet" class="btn-primario">Esplora il Catalogo</a>
         </div>
     </main>
 
