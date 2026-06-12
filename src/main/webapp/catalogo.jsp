@@ -105,9 +105,9 @@
                                 <div class="azioni-prodotto">
                                     <a href="${pageContext.request.contextPath}/ProdottoServlet?id=${set.codiceSet}" class="btn-secondario">Dettagli</a>
                                     
-                                    <form action="${pageContext.request.contextPath}/gestioneCarrelloServlet" method="POST" style="margin: 0;">
-                                        <input type="hidden" name="action" value="add">
-                                        <input type="hidden" name="idSet" value="${set.codiceSet}">
+                                    <form action="${pageContext.request.contextPath}/CarrelloServlet" method="POST">
+                                        <input type="hidden" name="azione" value="aggiungi">
+                                        <input type="hidden" name="id" value="${set.codiceSet}">
                                         <button type="submit" class="btn-primario">Aggiungi</button>
                                     </form>
                                 </div>
