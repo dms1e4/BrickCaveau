@@ -1,0 +1,53 @@
+@charset "UTF-8";
+@import "style.css";
+
+.policy-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            color: #333;
+}
+
+.policy-container h1 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+}
+
+.policy-container h2 {
+            font-size: 1.5rem;
+            color: #2980b9;
+            margin-top: 30px;
+            margin-bottom: 15px;
+}
+
+.policy-container p, .policy-container li {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+}
+
+.policy-container ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+}
+
+.policy-date {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+}
+
+hr {
+	margin-top: 40px;
+	border: 0;
+	border-top: 1px solid #ddd;
+}
+
+.disclaimer p {
+	font-size: 0.9rem;
+	color: #7f8c8d;
+	margin-top: 20px;
+}
