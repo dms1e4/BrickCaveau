@@ -127,6 +127,7 @@
 						    </c:if>
 						</tbody>
                     </table>
+                    <a href="${pageContext.request.contextPath}/LogoutServlet" class="btn-logout">Logout</a>
                 </div>
             </section>
 
