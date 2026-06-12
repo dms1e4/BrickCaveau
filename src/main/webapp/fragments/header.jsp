@@ -24,9 +24,11 @@
             <c:choose>
             	<c:when test="${not empty sessionScope.utente and sessionScope.utente.is_Admin()}">
 			        <a href="${pageContext.request.contextPath}/admin/dashboardServlet" class="icona">Dashboard Admin</a>
+			        <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">Esci</a>
 			    </c:when>
                 <c:when test="${not empty sessionScope.utente}">
                     <a href="${pageContext.request.contextPath}/profilo.jsp" class="icona">Profilo</a>
+                    <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">Esci</a>
                 </c:when>
                 <c:otherwise>
                     <a href="${pageContext.request.contextPath}/login.jsp" class="icona">Accedi / Registrati</a>
