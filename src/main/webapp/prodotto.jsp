@@ -63,11 +63,11 @@
 
                         <c:if test="${prodotto.quantitaMagazzino > 0}">
                             <form action="${pageContext.request.contextPath}/CarrelloServlet" method="POST" class="form-carrello">
-                                <input type="hidden" name="action" value="add">
-                                <input type="hidden" name="idSet" value="${prodotto.codiceSet}">
+                                <input type="hidden" name="azione" value="aggiungi">
+                                <input type="hidden" name="id" value="${prodotto.codiceSet}">
                                 
                                 <label for="quantita">Quantità:</label>
-                                <input type="number" id="quantita" name="quantita" value="1" min="1" max="${prodotto.quantitaMagazzino}">
+                                <input type="number" id="quantita" name="qta" value="1" min="1" max="${prodotto.quantitaMagazzino}">
                                 
                                 <button type="submit" class="btn-primario">Aggiungi al Carrello</button>
                             </form>
