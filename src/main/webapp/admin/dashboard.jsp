@@ -17,7 +17,7 @@
             <p>Benvenuto nel caveau di amministrazione, ${sessionScope.utente.nome}.</p>
         </div>
 
-        <%-- Messaggio di feedback (es. "Prodotto inserito con successo") --%>
+        <%-- feedback positivo: operazione completata --%>
         <c:if test="${not empty param.success}">
             <div class="msg-success">
                 Operazione completata con successo!
@@ -64,7 +64,7 @@
 						    <%-- fallback se catalogo è vuoto --%>
 						    <c:if test="${empty listaProdottiAdmin}">
 						        <tr>
-						            <td colspan="5" style="text-align:center; padding:20px;">Nessun prodotto trovato.</td>
+						            <td class="non-trovato" colspan="5">Nessun prodotto trovato.</td>
 						        </tr>
 						    </c:if>
 						</tbody>
@@ -122,7 +122,7 @@
 						    <%-- fallback --%>
 						    <c:if test="${empty listaOrdiniAdmin}">
 						        <tr>
-						            <td colspan="5" style="text-align:center; padding:20px;">Nessun ordine trovato con i filtri attuali.</td>
+						            <td class="non-trovato" colspan="5">Nessun ordine trovato con i filtri attuali.</td>
 						        </tr>
 						    </c:if>
 						</tbody>
