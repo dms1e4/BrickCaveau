@@ -25,13 +25,13 @@ public class OrdineDAO {
         Connection con = null;
         try {
             con = ds.getConnection();
-            con.setAutoCommit(false); // Avviamo la transazione manuale
+            con.setAutoCommit(false); // transazione manuale
 
-            // 1. Inserimento dell'ordine principale e recupero ID generato
+            // 1. inserisco l'ordine e recupero l'ID
             int idOrdineGenerato = -1;
             try (PreparedStatement psOrdine = con.prepareStatement(insertOrdineSQL, Statement.RETURN_GENERATED_KEYS)) {
                 psOrdine.setDate(1, ordine.getDataOrdine());
-                psOrdine.setDouble(2, carrello.getPrezzoTotaleComplessivo()); // Calcolato in tempo reale
+                psOrdine.setDouble(2, carrello.getPrezzoTotaleComplessivo());
                 psOrdine.setInt(3, ordine.getUtenteId());
                 psOrdine.setObject(4, ordine.getIndirizzoId());
                 psOrdine.setObject(5, ordine.getMetodoPagamentoId());
@@ -48,12 +48,11 @@ public class OrdineDAO {
                 throw new SQLException("Errore nel recupero dell'ID dell'ordine.");
             }
 
-            // 2. Ciclo sugli elementi del carrello per controlli e dettagli
+            // ciclo sugli elementi del carrello, per controllo dettagli
             for (Carrello.ElementoCarrello elem : carrello.getElementi()) {
                 int codiceSet = elem.getProdotto().getCodiceSet();
                 int qtaRichiesta = elem.getQuantita();
 
-                // 2a. Controllo Stock Transazionale
                 try (PreparedStatement psSelectStock = con.prepareStatement(selectStockSQL)) {
                     psSelectStock.setInt(1, codiceSet);
                     try (ResultSet rsStock = psSelectStock.executeQuery()) {
@@ -63,7 +62,7 @@ public class OrdineDAO {
                                 throw new RuntimeException("Quantità insufficiente in magazzino per il set: " + elem.getProdotto().getNome());
                             }
                             
-                            // Aggiorna lo stock sul database
+                            // aggiorno lo stock sul DB
                             try (PreparedStatement psUpdateStock = con.prepareStatement(updateStockSQL)) {
                                 psUpdateStock.setInt(1, stockAttuale - qtaRichiesta);
                                 psUpdateStock.setInt(2, codiceSet);
@@ -73,23 +72,23 @@ public class OrdineDAO {
                     }
                 }
 
-                // 2b. Inserimento nel dettaglio ordine (Congelando Prezzo e IVA storici)
+                // inserisco nel dettaglio dell'ordine
                 try (PreparedStatement psDettaglio = con.prepareStatement(insertDettaglioSQL)) {
                     psDettaglio.setInt(1, idOrdineGenerato);
                     psDettaglio.setInt(2, codiceSet);
                     psDettaglio.setInt(3, qtaRichiesta);
-                    psDettaglio.setDouble(4, elem.getProdotto().getPrezzo()); // Prezzo storico
-                    psDettaglio.setDouble(5, elem.getProdotto().getIva());    // IVA storica
+                    psDettaglio.setDouble(4, elem.getProdotto().getPrezzo());
+                    psDettaglio.setDouble(5, elem.getProdotto().getIva());    
                     psDettaglio.executeUpdate();
                 }
             }
 
-            // Salva definitivamente sul database
+            // ora salvo sul DB
             con.commit();
 
         } catch (SQLException | RuntimeException e) {
             if (con != null) {
-                con.rollback(); // Se succede un qualsiasi imprevisto annulliamo tutto!
+                con.rollback(); // in caso di imprevisto, annullo tutto
             }
             throw e;
         } finally {
@@ -113,11 +112,10 @@ public class OrdineDAO {
                 query += " ORDER BY " + orderBy;
             }
         } else {
-            // Ordinamento di default: i più recenti per primi
+            // ordinamento di default
             query += " ORDER BY Data_Acquisto DESC";
         }
 
-        // Utilizziamo il PreparedStatement per prevenire le SQL Injection
         try (Connection con = ds.getConnection();
              PreparedStatement ps = con.prepareStatement(query);
              ResultSet rs = ps.executeQuery()) {

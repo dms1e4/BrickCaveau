@@ -27,7 +27,7 @@ public class ProdottoServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        try {
+        try { // DataSource
             InitialContext ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/BrickCaveau");
         } catch (NamingException e) {
@@ -40,12 +40,11 @@ public class ProdottoServlet extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            // Prendo l'ID del prodotto passato nell'URL
+            // prendo id passato nell'url
             int idSet = Integer.parseInt(request.getParameter("id"));
             
             SetLegoDAO setDAO = new SetLegoDAO(ds);
             
-            // Richiamo il metodo esatto che ho letto nel tuo DAO!
             SetLegoBean prodotto = setDAO.doRetrieveByKey(idSet);
             
             // recupero tutte le recensioni associate al prodotto
