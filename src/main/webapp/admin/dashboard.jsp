@@ -87,8 +87,8 @@
                         <input type="date" name="dataA" id="dataA">
                     </div>
                     <div class="filtro-gruppo">
-                        <label for="emailCliente">Cliente (Email):</label>
-                        <input type="email" name="emailCliente" id="emailCliente" placeholder="es. mario@email.com">
+                        <label for="idUtente">Cliente (ID):</label>
+                        <input type="text" name="idUtente" id="idUtente" placeholder="1">
                     </div>
                     <div class="filtro-gruppo btn-filtro-container">
                         <button type="submit" class="btn-secondario">Applica Filtri</button>
@@ -112,7 +112,7 @@
 						        <tr>
 						            <td>#${ordine.id}</td>
 						            <td>${ordine.dataOrdine}</td>
-						            <td>${ordine.utenteEmail}</td>
+						            <td>${ordine.utenteId}</td>
 						            <td>€ ${ordine.totale}</td>
 						            <td>
 						                <a href="${pageContext.request.contextPath}/admin/DettaglioOrdineAdminServlet?id=${ordine.id}" class="btn-azione btn-modifica">Vedi Dettagli</a>
