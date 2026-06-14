@@ -25,7 +25,7 @@
         <h2>2. Quali dati raccogliamo</h2>
         <p>Durante la tua navigazione e interazione con il nostro e-commerce, raccogliamo le seguenti categorie di dati:</p>
         <ul>
-            <li><strong>Dati di registrazione e profilo:</strong> Nome, cognome, indirizzo email e password (salvata con cifratura SHA-512) forniti durante la creazione dell'account.</li>
+            <li><strong>Dati di registrazione e profilo:</strong> Nome, cognome, indirizzo email e password (salvata con cifratura SHA-256) forniti durante la creazione dell'account.</li>
             <li><strong>Dati di spedizione e fatturazione:</strong> Indirizzo fisico, città, CAP e dettagli necessari per l'evasione degli ordini.</li>
             <li><strong>Dati di navigazione:</strong> Indirizzo IP, tipo di browser, e le pagine visitate all'interno del nostro catalogo.</li>
             <li><strong>Dati relativi agli ordini:</strong> Storico degli acquisti, set LEGO inseriti nel carrello e recensioni rilasciate sui prodotti.</li>

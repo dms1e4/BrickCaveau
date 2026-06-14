@@ -60,20 +60,20 @@ public class CarrelloServlet extends HttpServlet {
                 
                 case "aggiungi":
                     int idDaAggiungere = Integer.parseInt(request.getParameter("id"));
-                    // Recupero quantita dal form (se non c'è, default = 1)
+                    // recupero quantità (se non c'è, imposto a 1)
                     String qtaParam = request.getParameter("qta");
                     int qtaDaAggiungere = (qtaParam != null && !qtaParam.isEmpty()) ? Integer.parseInt(qtaParam) : 1;
                     
-                    // L'unica volta che interrogo il DB è per avere i dati puliti del prodotto da mettere nel carrello
+                    // ora interrogo il DB
                     SetLegoDAO setDAO = new SetLegoDAO(ds);
                     SetLegoBean prodotto = setDAO.doRetrieveByKey(idDaAggiungere);
                     
                     if (prodotto != null) {
                         carrello.aggiungiProdotto(prodotto, qtaDaAggiungere);
-                        // Reindirizzo per evitare il re-invio del form se l'utente aggiorna la pagina (Pattern PRG)
+                        // reindirizzamento (per evitare ri-invio del form se l'utente aggiorna)
                         response.sendRedirect(request.getContextPath() + "/carrello.jsp");
                     } else {
-                        // Se l'utente smanetta con l'URL e passa un ID falso
+                        // se l'utente cambia URL
                         response.sendRedirect(request.getContextPath() + "/errori/404.jsp");
                     }
                     break;

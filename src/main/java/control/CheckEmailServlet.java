@@ -38,7 +38,7 @@ public class CheckEmailServlet extends HttpServlet {
         
         String email = request.getParameter("email");
         
-        // Impostiamo il content type corretto per la risposta JSON richiesta dal prof
+        // imposto content-type corretto per json
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
@@ -47,7 +47,7 @@ public class CheckEmailServlet extends HttpServlet {
         if (email != null && !email.trim().isEmpty()) {
             try {
                 UtenteDAO utenteDAO = new UtenteDAO(ds);
-                // Se restituisce un utente, significa che l'email è già occupata!
+                // mail già in uso
                 if (utenteDAO.doRetrieveByEmail(email) != null) {
                     dataExists = true;
                 }
@@ -56,7 +56,7 @@ public class CheckEmailServlet extends HttpServlet {
             }
         }
 
-        // Risposta JSON snella pronta per la JavaScript Fetch API del front-end
+        // risposta JSON
         response.getWriter().print("{\"esiste\": " + dataExists + "}");
     }
 }

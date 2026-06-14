@@ -23,7 +23,7 @@ public class RicercaAjaxServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        try {
+        try { //DataSource con JNDI
             InitialContext ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/BrickCaveau");
         } catch (NamingException e) {
@@ -37,11 +37,11 @@ public class RicercaAjaxServlet extends HttpServlet {
         
         String q = request.getParameter("q");
         
-        // Impostiamo l'header per dire al browser che gli stiamo mandando un JSON!
+        // imposto content-type a JSN
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        // Se la barra è vuota, restituiamo un array JSON vuoto
+        // se la barra è vuota, restituisco array vuoto
         if (q == null || q.trim().isEmpty()) {
             response.getWriter().write("[]");
             return;
@@ -51,11 +51,10 @@ public class RicercaAjaxServlet extends HttpServlet {
             SetLegoDAO setDAO = new SetLegoDAO(ds);
             Collection<SetLegoBean> risultati = setDAO.doRetrieveByName(q);
 
-            // Costruiamo la stringa JSON manualmente (es: [{"id": 1, "nome": "Harry Potter..."}, {...}])
+            // costruisco stringa manualmente
             StringBuilder json = new StringBuilder("[");
             int count = 0;
             for (SetLegoBean set : risultati) {
-                // Escape degli apici nel nome per non rompere il JSON
                 String nomePulito = set.getNome().replace("\"", "\\\""); 
                 
                 json.append("{")
@@ -65,7 +64,7 @@ public class RicercaAjaxServlet extends HttpServlet {
                 
                 count++;
                 if (count < risultati.size()) {
-                    json.append(","); // Virgola tra un oggetto e l'altro
+                    json.append(",");
                 }
             }
             json.append("]");

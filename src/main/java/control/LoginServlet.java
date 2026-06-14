@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            // Recupera il DataSource tramite JNDI configurato su Tomcat
+            // recupero DataSource tramite JNDI
             InitialContext ctx = new InitialContext();
             ds = (DataSource) ctx.lookup("java:comp/env/jdbc/BrickCaveau");
         } catch (NamingException e) {
@@ -43,38 +43,38 @@ public class LoginServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        // Controllo di sicurezza base sui parametri
+        // controllo base di sicurezza (con trim(
         if (email == null || password == null || email.trim().isEmpty() || password.trim().isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/login.jsp?error=vuoti");
             return;
         }
 
         try {
-            // Cifriamo la password inserita in SHA-256 per confrontarla con quella sul DB
+            // cifratura password con funzione helper
             String passwordCifrata = hashPassword(password);
             
             UtenteDAO utenteDAO = new UtenteDAO(ds);
             UtenteBean utente = utenteDAO.doRetrieveByLogin(email, passwordCifrata);
 
             if (utente != null) {
-                // Login convalidato: creiamo o recuperiamo la sessione
+                // login convalidato: creo o ottengo sessione
                 HttpSession session = request.getSession(true);
-                session.setAttribute("utente", utente); // Salviamo l'utente in sessione
+                session.setAttribute("utente", utente); // salvo l'utente in sessione
                 
-                // Reindirizzamento in base al ruolo (Requisito Area Admin / Cliente)
+                // reindirizzamento admin/utente
                 if (utente.is_Admin()) {
                     response.sendRedirect(request.getContextPath() + "/admin/dashboardServlet");
                 } else {
-                    response.sendRedirect(request.getContextPath() + "/index.jsp"); // Home o Profilo
+                    response.sendRedirect(request.getContextPath() + "/index.jsp");
                 }
             } else {
-                // Credenziali errate
+                // credenziali errate
                 response.sendRedirect(request.getContextPath() + "/login.jsp?error=invalid");
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/error.jsp"); // Redirezione su pagina di errore
+            response.sendRedirect(request.getContextPath() + "/500.jsp");
         }
     }
 
@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
         doPost(request, response);
     }
 
-    // Funzione Helper per cifrare la password in SHA-256
+    // funzione per cifrare la password in SHA-256
     private String hashPassword(String password) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

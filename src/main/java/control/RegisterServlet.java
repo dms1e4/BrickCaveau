@@ -47,10 +47,9 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
             telefonoCompleto = prefisso + numero;
         }
 
-        // Controllo lato server (Integrità dati)
+        // controllo base lato server (trim)
         if (nome == null || cognome == null || email == null || password == null || numero == null ||
             nome.trim().isEmpty() || cognome.trim().isEmpty() || email.trim().isEmpty() || password.trim().isEmpty() || numero.trim().isEmpty()) {
-            // CORRETTO: punta a registrazione.jsp
             response.sendRedirect(request.getContextPath() + "/registrazione.jsp?error=campivuoti");
             return;
         }
@@ -58,35 +57,33 @@ public class RegisterServlet extends javax.servlet.http.HttpServlet {
         try {
             UtenteDAO utenteDAO = new UtenteDAO(ds);
             
-            // Ultimo controllo di sicurezza: l'email esiste già?
+            // mail già presa?
             if (utenteDAO.doRetrieveByEmail(email) != null) {
-                // CORRETTO: punta a registrazione.jsp
                 response.sendRedirect(request.getContextPath() + "/registrazione.jsp?error=emailduplicata");
                 return;
             }
 
-            // Popoliamo il Bean
+            // associo i dati al bean
             UtenteBean nuovoUtente = new UtenteBean();
             nuovoUtente.setNome(nome);
             nuovoUtente.setCognome(cognome);
             nuovoUtente.setEmail(email);
-            nuovoUtente.setPassword(hashPassword(password)); // Cifratura di sicurezza!
+            nuovoUtente.setPassword(hashPassword(password));
             nuovoUtente.setTelefono(telefonoCompleto);
-            nuovoUtente.set_Admin(false); // Di default ci si registra come normali clienti
+            nuovoUtente.set_Admin(false);
 
-            // Salvataggio nel DB
+            // salvo nel DB
             utenteDAO.doSave(nuovoUtente);
             UtenteBean utenteCompleto = utenteDAO.doRetrieveByEmail(nuovoUtente.getEmail());
             HttpSession session = request.getSession(true);
             session.setAttribute("utente", utenteCompleto);
 
-            // Successo: mandiamo l'utente alla pagina di login con un messaggio positivo
+
             response.sendRedirect(request.getContextPath() + "/login.jsp?status=registrato");
 
         } catch (SQLException e) {
             e.printStackTrace();
-            // CORRETTO: punta a registrazione.jsp (o volendo a /errori/500.jsp)
-            response.sendRedirect(request.getContextPath() + "/registrazione.jsp?error=dberror");
+            response.sendRedirect(request.getContextPath() + "/errori/500.jsp");
         }
     }
 
