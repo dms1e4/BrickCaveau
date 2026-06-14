@@ -10,7 +10,6 @@ import model.SetLego.SetLegoBean;
 public class Carrello implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // Inner class per rappresentare la singola riga del carrello
     public static class ElementoCarrello implements Serializable {
         private static final long serialVersionUID = 1L;
         private SetLegoBean prodotto;
@@ -33,7 +32,7 @@ public class Carrello implements Serializable {
         this.elementi = new HashMap<>();
     }
 
-    // Aggiunge un set Lego o ne aumenta la quantità se già presente
+    // aggiunge un set o incrementa quantità (se è già presente)
     public void aggiungiProdotto(SetLegoBean prodotto, int qta) {
         int codice = prodotto.getCodiceSet();
         if (elementi.containsKey(codice)) {
@@ -44,12 +43,11 @@ public class Carrello implements Serializable {
         }
     }
 
-    // Rimuove completamente un prodotto dal carrello
     public void rimuoviProdotto(int codiceSet) {
         elementi.remove(codiceSet);
     }
 
-    // Modifica la quantità 
+ 
     public void aggiornaQuantita(int codiceSet, int qta) {
         if (elementi.containsKey(codiceSet)) {
             if (qta <= 0) {
@@ -60,12 +58,12 @@ public class Carrello implements Serializable {
         }
     }
 
-    // Ritorna la lista degli elementi pronti da mostrare nella JSP
+
     public Collection<ElementoCarrello> getElementi() {
         return elementi.values();
     }
 
-    // Calcola il totale complessivo del carrello
+    // calcolo totale
     public double getPrezzoTotaleComplessivo() {
         double totale = 0;
         for (ElementoCarrello elem : elementi.values()) {

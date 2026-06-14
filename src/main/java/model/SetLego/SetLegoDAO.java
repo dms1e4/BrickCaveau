@@ -38,7 +38,7 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
     List<SetLegoBean> list = new ArrayList<>();
     String query = "SELECT * FROM Set_Lego";
         
-    // Evitiamo SQL Injection sull'ordinamento controllando l'input
+    // controllo sull'input
     if (order != null && !order.trim().isEmpty() && order.matches("[a-zA-Z_]+")) {
       query += " ORDER BY " + order;
     }
@@ -63,7 +63,7 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
             
       ps.setString(1, bean.getNome());
       ps.setInt(2, bean.getAnnoUscita());
-      ps.setObject(3, bean.getAnnoRitiro()); // setObject gestisce agevolmente il NULL
+      ps.setObject(3, bean.getAnnoRitiro());
       ps.setInt(4, bean.getnPezzi());
       ps.setString(5, bean.getDescrizione());
       ps.setDouble(6, bean.getPrezzo());
@@ -133,7 +133,7 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
         String selectQuery = "SELECT Quantita_Magazzino FROM Set_Lego WHERE Codice_Set = ? FOR UPDATE";
         String updateQuery = "UPDATE Set_Lego SET Quantita_Magazzino = ? WHERE Codice_Set = ?";
         
-        // Gestiamo la transazione manualmente disattivando l'AutoCommit
+        // gestione manuale della transazione
         Connection con = null;
         try {
             con = ds.getConnection();
@@ -143,7 +143,7 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
                 int codiceSet = item.getKey();
                 int qtaRichiesta = item.getValue();
                 
-                // 1. Controlliamo la disponibilità attuale sul DB bloccando la riga (FOR UPDATE)
+                // controllo disponibilità del set
                 try (PreparedStatement psSelect = con.prepareStatement(selectQuery)) {
                     psSelect.setInt(1, codiceSet);
                     try (ResultSet rs = psSelect.executeQuery()) {
@@ -153,7 +153,7 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
                                 throw new RuntimeException("Errore: Quantità insufficiente per il set ID " + codiceSet);
                             }
                             
-                            // 2. Aggiorniamo calcolando il nuovo stock
+                            // aggiorno con nuovo stock
                             try (PreparedStatement psUpdate = con.prepareStatement(updateQuery)) {
                                 psUpdate.setInt(1, qtaDisponibile - qtaRichiesta);
                                 psUpdate.setInt(2, codiceSet);
@@ -170,18 +170,18 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
             
         } catch (SQLException | RuntimeException e) {
             if (con != null) {
-                con.rollback(); // Se c'è un errore annulla tutto!
+                con.rollback();
             }
             throw e;
         } finally {
             if (con != null) {
                 con.setAutoCommit(true);
-                con.close(); // Rilasciamo la connessione nel pool
+                con.close();
             }
         }
     }
 
-    // Metodo helper privato per mappare le righe del database nel Bean
+
     private SetLegoBean mapResultSetToBean(ResultSet rs) throws SQLException {
         SetLegoBean bean = new SetLegoBean();
         bean.setCodiceSet(rs.getInt("Codice_Set"));
@@ -197,11 +197,11 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
         return bean;
     }
 
- // Metodo per la ricerca AJAX
+ // ricerca AJAX
     public Collection<SetLegoBean> doRetrieveByName(String namePrefix) throws SQLException {
         List<SetLegoBean> list = new ArrayList<>();
         
-        // Controlla Nome OPPURE Tema
+        // controllo per nome del set / tema del set
         String query = "SELECT * FROM Set_Lego WHERE Nome LIKE ? OR Tema LIKE ? LIMIT 5"; 
         
         try (Connection con = ds.getConnection();
@@ -209,8 +209,8 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
             
             String parametroRicerca = "%" + namePrefix + "%";
             
-            ps.setString(1, parametroRicerca); // Va nel primo punto interrogativo (Nome)
-            ps.setString(2, parametroRicerca); // Va nel secondo punto interrogativo (Tema)
+            ps.setString(1, parametroRicerca);
+            ps.setString(2, parametroRicerca);
             
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

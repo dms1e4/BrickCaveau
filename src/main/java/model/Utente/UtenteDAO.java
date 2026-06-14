@@ -11,7 +11,6 @@ public class UtenteDAO implements DAOInterface<UtenteBean, Integer> {
 
     private DataSource ds = null;
 
-    // Costruttore che riceve il DataSource tramite JNDI dalla Servlet
     public UtenteDAO(DataSource ds) {
         this.ds = ds;
     }

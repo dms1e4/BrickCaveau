@@ -31,8 +31,7 @@ public class RecensioneDAO {
                     bean.setRating(rs.getInt("Rating"));
                     bean.setTesto(rs.getString("Testo"));
                     bean.setDataRecensione(rs.getDate("Data_Recensione"));
-                    
-                    // Dati presi dalla JOIN con la tabella Utente
+
                     bean.setNomeUtente(rs.getString("Nome"));
                     bean.setCognomeUtente(rs.getString("Cognome"));
                     

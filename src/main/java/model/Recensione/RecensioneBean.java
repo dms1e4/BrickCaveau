@@ -11,8 +11,6 @@ public class RecensioneBean implements Serializable {
     private int rating;
     private String testo;
     private Date dataRecensione;
-
-    // Campi per front-end
     private String nomeUtente;
     private String cognomeUtente;
 
