@@ -149,7 +149,7 @@ footer {
 }
 
 .footer-link h4 {
-	color: var (--sfondo-p);
+	color: white;
 	margin-bottom: 15px;
 	font-size: 1.1rem;
 }

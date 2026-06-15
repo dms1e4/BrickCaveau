@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catalogo - BrickCaveau</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/catalogo.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/catalogo.css?ts=<%=System.currentTimeMillis()%>">
 </head>
 <body>
     <jsp:include page="/fragments/header.jsp" />

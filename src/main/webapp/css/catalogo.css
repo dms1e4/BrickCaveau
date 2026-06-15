@@ -1,239 +1,340 @@
 @charset "UTF-8";
 @import "style.css";
 
-.catalogo-container h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #1E293B; 
-}
+/* LAYOUT */
 
-
-.grid-catalogo {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-    padding: 20px 0;
-}
-
-.card-prodotto {
-    background-color: white;
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-
-.card-prodotto:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-}
-
-.card-prodotto img {
-    max-width: 100%;
-    height: 200px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-.card-prodotto h3 {
-    font-size: 1.1em;
-    color: #0F172A;
-    margin-bottom: 10px;
-    flex-grow: 1;
-}
-
-.card-prodotto .prezzo {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: #C8102E;
-    margin-bottom: 20px;
-}
-
-.azioni-prodotto {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-
-.btn-primario {
-    background-color: #C8102E;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
-}
-
-.btn-primario:hover {
-    background-color: #990C22;
-}
-
-.btn-secondario {
-    background-color: #1E293B;
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    font-weight: bold;
-    display: inline-block;
-    transition: background-color 0.3s;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.btn-secondario:hover {
-    background-color: #0F172A;
-}
-
-/* 🔥 NOVITÀ: Layout a due colonne per Sidebar e Catalogo */
 .catalogo-layout {
     display: flex;
     gap: 30px;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1400px;
     margin: 40px auto;
-    padding: 0 20px;
+    padding: 0 5%;
     align-items: flex-start;
+    box-sizing: border-box;
 }
 
-/* 🔥 NOVITÀ: Sidebar stile dashboard moderna */
+/* SIDEBAR */
 .sidebar-filtri {
-    flex: 0 0 260px;
-    background-color: white;
+    flex: 0 0 280px; 
+    background-color: #FFFFFF;
     border: 1px solid #E2E8F0;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    padding: 25px 20px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    position: sticky;
+    top: 20px;
 }
 
 .sidebar-filtri h3 {
     margin-top: 0;
-    border-bottom: 2px solid #C8102E;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    color: var(--testo-p);
+    border-bottom: 2px solid var(--colore-primario);
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-size: 1.3rem;
+    font-weight: 700;
 }
 
 .gruppo-filtro {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: flex;
     flex-direction: column;
 }
 
 .gruppo-filtro label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-size: 0.9em;
+    font-weight: 600;
+    color: var(--testo-p);
+    margin-bottom: 10px;
+    font-size: 0.95rem;
 }
 
-.gruppo-filtro input[type="number"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+/* CHECKBOX CONTAINER */
 
 .checkbox-container {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
 }
 
-/* 🔥 NOVITÀ: Slider Orizzontale Customizzato */
+.control-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    color: var(--testo-s);
+    cursor: pointer;
+    font-weight: normal;
+    transition: color 0.2s ease;
+}
+
+.control-checkbox:hover {
+    color: var(--testo-p);
+}
+
+.control-checkbox input[type="checkbox"] {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    accent-color: var(--colore-primario);
+}
+
+/* ORDINAMENTO */
+
+.select-ordinamento {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    color: var(--testo-p);
+    background-color: #FFFFFF;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.select-ordinamento:focus,
+.select-ordinamento:hover {
+    border-color: var(--colore-primario);
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+/* SLIDER */
+
 .slider-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* 🔥 NOVITÀ: Stile unico per tutti i numeretti sopra i 3 slider */
 .valore-dinamico {
-    background-color: #F1F5F9;
-    color: #C8102E;
-    padding: 2px 8px;
+    background-color: var(--sfondo-p);
+    color: var(--colore-primario);
+    padding: 3px 8px;
     border-radius: 4px;
     font-weight: bold;
     font-size: 0.85rem;
     border: 1px solid #E2E8F0;
-    min-width: 40px;
+    min-width: 50px;
     text-align: center;
 }
 
 input[type="range"] {
     width: 100%;
-    margin-top: 10px;
-    accent-color: #C8102E; /* Colora lo slider di rosso nei browser moderni */
+    margin-top: 12px;
+    accent-color: var(--colore-primario);
     cursor: pointer;
+    height: 6px;
+    background: #E2E8F0;
+    border-radius: 4px;
+    outline: none;
 }
+
+/* RESET FILTRI */
 
 .btn-reset-live {
     width: 100%;
-    padding: 10px;
-    background-color: #F1F5F9;
-    border: 1px solid #CBD5E1;
+    padding: 12px;
+    background-color: transparent;
+    color: var(--testo-s);
+    border: 1px solid var(--testo-s);
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
+    transition: all 0.2s ease;
+    margin-top: 10px;
 }
 
 .btn-reset-live:hover {
-    background-color: #E2E8F0;
+    background-color: var(--testo-s);
+    color: #FFFFFF;
+    border-color: var(--testo-s);
 }
 
+/* CATALOGO E GRIGLIA */
+
 .contenuto-catalogo {
-    flex: 1; /* Prende lo spazio rimanente a destra */
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenuto-catalogo h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: var(--testo-p);
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: left;
 }
 
 .messaggio-vuoto {
     text-align: center;
-    padding: 40px;
-    background-color: #F8F9FA;
+    padding: 60px 20px;
+    background-color: #FFFFFF;
     border-radius: 8px;
-    border: 1px dashed #ccc;
+    border: 2px dashed #E2E8F0;
+    color: var(--testo-s);
 }
 
-/* Responsività: Su smartphone la sidebar va sopra i prodotti */
-@media (max-width: 768px) {
+.messaggio-vuoto h3 {
+    color: var(--testo-p);
+    margin-bottom: 10px;
+}
+
+.grid-catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+    gap: 25px;
+    width: 100%;
+    justify-content: flex-start !important;
+    align-content: start;
+    margin: 0 !important;
+    padding-bottom: 40px;
+}
+
+/* CARD PRODOTTI */
+
+.card-prodotto {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+	
+	margin: 0 !important; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card-prodotto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    border-color: var(--colore-primario);
+}
+
+.card-prodotto img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    background-color: transparent;
+    mix-blend-mode: multiply;
+}
+
+.card-prodotto h3 {
+    font-size: 1.1rem;
+    color: var(--testo-p);
+    margin-bottom: 10px;
+    flex-grow: 1;
+    line-height: 1.4;
+}
+
+.card-prodotto .prezzo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--colore-primario);
+    margin-bottom: 20px;
+}
+
+.azioni-prodotto {
+    display: flex;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+/* BOTTONE DETTAGLIO */
+.btn-secondario, .btn-primario {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.btn-secondario {
+    background-color: var(--sfondo-s); 
+    color: var(--sfondo-p);
+    text-decoration: none;
+}
+
+.btn-secondario:hover {
+    background-color: var(--testo-p);
+    transform: scale(1.02);
+}
+
+.btn-secondario, .azioni-prodotto form {
+    flex: 1;
+    display: flex;
+}
+
+.btn-primario {
+    background-color: var(--colore-primario);
+    color: #FFFFFF;
+}
+
+.btn-primario:hover {
+    background-color: var(--colore-secondario); 
+    color: var(--testo-p);
+    transform: scale(1.02);
+}
+
+.azioni-prodotto form {
+    margin: 0;
+}
+
+.azioni-prodotto form .btn-primario {
+    margin: 0;
+    flex: 1;
+}
+
+/* MEDIA QUERY PER TABLET */
+
+@media (max-width: 900px) {
     .catalogo-layout {
         flex-direction: column;
+        padding: 0 20px;
+        margin: 20px auto;
     }
+    
     .sidebar-filtri {
         width: 100%;
         box-sizing: border-box;
+        position: static;
+        margin-bottom: 30px;
+    }
+    
+    .grid-catalogo {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     }
 }
 
-/* 🔥 NOVITÀ: Stile per il menu a tendina dell'ordinamento dentro la sidebar */
-.select-ordinamento {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #CBD5E1;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    color: #0F172A;
-    background-color: #F8FAFC;
-    cursor: pointer;
-    outline: none;
-    transition: all 0.2s;
-    box-sizing: border-box; /* Evita che esca dai bordi della sidebar */
-}
-
-.select-ordinamento:focus,
-.select-ordinamento:hover {
-    border-color: #C8102E;
-    background-color: #FFFFFF;
-}
-
-/* Ripristiniamo il margine del titolo principale */
-.contenuto-catalogo h2 {
-    margin-top: 0;
-    margin-bottom: 25px;
-    color: #0F172A;
+/* MEDIA QUERY PER MOBILE */
+@media (max-width: 576px) {
+    .grid-catalogo {
+        grid-template-columns: 1fr;
+    }
+    
+    .azioni-prodotto {
+        flex-direction: column; 
+    }
+    
+    .btn-secondario, .azioni-prodotto form {
+        width: 100%;
+    }
 }
