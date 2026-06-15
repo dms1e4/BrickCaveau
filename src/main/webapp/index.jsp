@@ -20,7 +20,7 @@
     </main>
 	    <section class="sezione-popolari">
 	    <div class="container-titolo-carosello">
-	        <h2>I set più visitati del momento</h2>
+	        <h2>I set che ti consigliamo</h2>
 	        <div class="frecce-carosello">
 	        </div>
 	    </div>

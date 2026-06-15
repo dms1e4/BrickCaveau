@@ -39,8 +39,10 @@ h1, h2, h3, h4, h5, h6 {
 /* BANNER */
 
 .banner {
-	background-image: url("https://us.123rf.com/450wm/dontree/dontree2011/dontree201100119/158528356-blocchi-di-plastica-colorati-su-sfondo-di-carta-bianca-giocattolo-per-bambini-in-plastica.jpg?ver=6");
-	opacity: 0.3;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url("https://us.123rf.com/450wm/dontree/dontree2011/dontree201100119/158528356-blocchi-di-plastica-colorati-su-sfondo-di-carta-bianca-giocattolo-per-bambini-in-plastica.jpg?ver=6");
+	background-size: cover;
+	background-position: center;
+	
 	color: var(--testo-p);
 	padding: 80px 20px;
 	text-align: center;
