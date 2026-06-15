@@ -45,6 +45,14 @@
     font-size: 0.95rem;
 }
 
+.carrello-errore {
+	color: var(--errore);
+	font-weight: bold;
+	text-align: center;
+	border: 2px solid var(--errore);
+	padding: 2px;
+}
+
 /* FORM */
 
 .login-container form label {

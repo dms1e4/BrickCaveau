@@ -18,6 +18,12 @@
         Registrazione completata con successo! Ora puoi accedere.
     </p>
 </c:if>
+<%-- Messaggio di login per accedere al carrello --%>
+<c:if test="${not empty param.error}">
+    <div class="carrello-errore">
+        ${param.error}
+    </div>
+</c:if>
         <%-- Intercettazione degli errori dalla LoginServlet --%>
         <c:if test="${param.error == 'invalid'}">
             <p>Credenziali errate. Riprova.</p>
