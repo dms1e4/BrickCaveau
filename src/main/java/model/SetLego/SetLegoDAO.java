@@ -221,4 +221,24 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
         return list;
     }
 
+
+
+// set lego da esporre in home
+
+   public List<SetLegoBean> doRetrieveRandom(int limit) throws SQLException {
+    List<SetLegoBean> setCasuali = new ArrayList<>();
+    String query = "SELECT * FROM Set_Lego ORDER BY RAND() LIMIT ?";
+    
+    try (Connection con = ds.getConnection();
+         PreparedStatement ps = con.prepareStatement(query)) {
+         
+        ps.setInt(1, limit);
+        try (ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                setCasuali.add(mapResultSetToBean(rs)); 
+            }
+        }
+    }
+    	return setCasuali;
+    }
 }

@@ -5,7 +5,7 @@
 <header>
     <div class="top-bar">
         <div class="logo">
-            <a href="${pageContext.request.contextPath}/index.jsp">
+            <a href="${pageContext.request.contextPath}/Home">
                 <img src="${pageContext.request.contextPath}/images/logo_bianco.png" alt="Logo BrickCaveau" class="logo-img">
             </a>
         </div>
