@@ -26,11 +26,13 @@
             	<c:when test="${not empty sessionScope.utente and sessionScope.utente.is_Admin()}">
 			        <a href="${pageContext.request.contextPath}/admin/dashboardServlet" class="icona">Dashboard Admin</a>
 			        <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">Esci</a>
+			        <a href="${pageContext.request.contextPath}/carrello.jsp" class="icona">Carrello</a>
 			    </c:when>
 			    <%-- Utente LOGGATO --%>
                 <c:when test="${not empty sessionScope.utente}">
                     <a href="${pageContext.request.contextPath}/ProfiloServlet" class="icona">Profilo</a>
                     <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">Esci</a>
+                    <a href="${pageContext.request.contextPath}/carrello.jsp" class="icona">Carrello</a>
                 </c:when>
                 <%-- Utente VISITATORE --%>
                 <c:otherwise>
