@@ -91,7 +91,7 @@
                         <input type="text" name="idUtente" id="idUtente" placeholder="1">
                     </div>
                     <div class="filtro-gruppo btn-filtro-container">
-                        <button type="submit" class="btn-secondario">Applica Filtri</button>
+                        <button type="submit" class="btn-azione btn-secondario">Applica Filtri</button>
                     </div>
                 </form>
 

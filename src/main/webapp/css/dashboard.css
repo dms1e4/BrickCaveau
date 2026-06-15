@@ -93,14 +93,18 @@
     color: white;
 }
 
-.btn-modifica:hover { background-color: #2563EB; }
+.btn-modifica:hover { 
+	background-color: #2563EB; 
+}
 
 .btn-elimina {
     background-color: #DC2626; /* Rosso intenso */
     color: white;
 }
 
-.btn-elimina:hover { background-color: #B91C1C; }
+.btn-elimina:hover { 
+	background-color: #B91C1C;
+}
 
 .form-elimina {
     margin: 0;
@@ -109,6 +113,11 @@
 .non-trovato {
 	 text-align:center;
 	 padding:20px;
+}
+
+.btn-secondario {
+	background-color: var(--colore-primario);
+	color: white;
 }
 
 /* filtri */
