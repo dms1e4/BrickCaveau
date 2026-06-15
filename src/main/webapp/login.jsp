@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login - BrickCaveau</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 </head>
 <body>
     <jsp:include page="/fragments/header.jsp" />
@@ -14,16 +14,16 @@
         <h2>Accedi al tuo Caveau</h2>
         <%-- Messaggio di conferma post-registrazione --%>
 <c:if test="${param.status == 'registrato'}">
-    <p class="text-success" style="color: #16A34A; font-weight: bold; text-align: center;">
+    <p class="text-success">
         Registrazione completata con successo! Ora puoi accedere.
     </p>
 </c:if>
         <%-- Intercettazione degli errori dalla LoginServlet --%>
         <c:if test="${param.error == 'invalid'}">
-            <p style="color: red; font-weight: bold;">Credenziali errate. Riprova.</p>
+            <p>Credenziali errate. Riprova.</p>
         </c:if>
         <c:if test="${param.error == 'vuoti'}">
-            <p style="color: red; font-weight: bold;">Per favore, compila tutti i campi.</p>
+            <p>Per favore, compila tutti i campi.</p>
         </c:if>
 
         <form action="${pageContext.request.contextPath}/loginServlet" method="POST">

@@ -3,103 +3,105 @@
 
 .search-container {
     position: relative;
-    width: 300px; /* Puoi allargarla o stringerla come preferisci */
+    max-width: 400px;
+    min-width: 200px;
+    margin: 0 30px;
+    flex: 1;
 }
 
 .search-input {
     width: 100%;
     padding: 10px 15px;
-    border: 1px solid #CBD5E1;
-    border-radius: 20px;
+    border: 1px solid var(--testo-s);
+    border-radius: 4px;
     font-size: 0.95rem;
+    background-color: var(--sfondo-p);
+    color: var(--testo-p);
     outline: none;
-    transition: box-shadow 0.2s;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
 }
 
 .search-input:focus {
-    box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.3); /* Effetto glow rosso BrickCaveau */
-    border-color: #C8102E;
+    box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.2);
+    border-color: var(--colore-primario);
 }
 
-/* La tendina fluttuante dei risultati */
 .resultBox {
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
+    width: 100%;
+    box-sizing: border-box;
     background-color: white;
-    border: 1px solid #E2E8F0;
-    border-radius: 8px;
+    border: 1px solid var(--testo-s);
+    border-top: none;
+    border-radius: 0 0 4px 4px;
     box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    margin-top: 5px;
     z-index: 1000;
     max-height: 300px;
     overflow-y: auto;
 }
 
-/* Layout Flexbox per allineare immagine e testi */
 .suggestion-item {
     display: flex;
-    align-items: center; /* Centra l'immagine verticalmente rispetto ai testi */
+    align-items: center;
     padding: 10px 15px;
     text-decoration: none;
     border-bottom: 1px solid #F1F5F9;
     transition: background-color 0.2s;
-    gap: 15px; /* Spazio tra l'immagine e le scritte */
+    gap: 15px;
 }
 
-/* Rimuovi il bordo dall'ultimo elemento */
+
 .suggestion-item:last-child {
     border-bottom: none;
 }
 
-/* Stile dell'immagine in miniatura */
+
 .suggestion-img {
     width: 45px;
     height: 45px;
-    object-fit: contain; /* Evita che l'immagine del lego si deformi */
-    background-color: #F8FAFC;
+    object-fit: contain;
+    background-color: var(--sfondo-p);
     border: 1px solid #E2E8F0;
-    border-radius: 6px;
+    border-radius: 4px;
     padding: 2px;
 }
 
-/* Contenitore per i due testi (li mette in colonna) */
 .suggestion-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* Stile del Titolo */
 .suggestion-title {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #0F172A;
-    transition: color 0.2s;
+    color: var(--testo-p);
+    transition: color 0.2s ease;
 }
 
-/* Stile del Codice (Piccolo e grigio) */
 .suggestion-code {
     font-size: 0.75rem;
-    color: #64748B;
+    color: var(--testo-s);
     margin-top: 3px;
 }
 
-/* Effetto Hover (quando ci passi sopra col mouse) */
 .suggestion-item:hover {
-    background-color: #F8FAFC;
+    background-color: var(--sfondo-p);
 }
 
-/* Il titolo diventa rosso quando passi sopra a tutta la riga */
 .suggestion-item:hover .suggestion-title {
-    color: #C8102E; 
+    color: var(--colore-primario);
 }
 
-/* Nessun risultato */
+
 .no-result {
-    padding: 12px 15px;
-    color: #64748B;
+    padding: 15px;
+    color: var(--testo-s);
     font-style: italic;
     font-size: 0.9rem;
+    text-align: center;
 }

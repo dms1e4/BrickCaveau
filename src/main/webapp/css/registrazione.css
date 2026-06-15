@@ -1,0 +1,136 @@
+@charset "UTF-8";
+@import "style.css";
+
+/* CONTAINER REGISTRAZIONE */
+
+.registrazione-container {
+	max-width: 500px;
+	margin: 20px auto;
+	padding: 30px;
+	background-color: white;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+	border: 1px solid #E2E8F0;
+	box-sizing: border-box;
+}
+
+.registrazione-container h2 {
+	text-align: center;
+	color: var(--testo-p);
+	margin-bottom: 25px;
+	font-size: 1.8rem;
+}
+
+/* FORM */
+
+form#formRegistrazione br {
+    display: none;
+}
+
+form#formRegistrazione label {
+    display: block;
+    font-weight: 600;
+    color: var(--testo-p);
+    margin-bottom: 5px;
+    margin-top: 15px; 
+}
+
+
+form#formRegistrazione label[for="nome"] {
+    margin-top: 0;
+}
+
+form#formRegistrazione input[type="text"],
+form#formRegistrazione input[type="email"],
+form#formRegistrazione input[type="password"] {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--testo-s);
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: var(--sfondo-p);
+    color: var(--testo-p);
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+
+form#formRegistrazione input:focus,
+#prefisso:focus {
+    border-color: var(--colore-primario);
+    box-shadow: 0 0 0 2px rgba(200, 16, 46, 0.2);
+    outline: none;
+}
+
+/* TELEFONO */
+
+#prefisso {
+    width: 110px;
+    padding: 10px;
+    border: 1px solid var(--testo-s);
+    border-radius: 4px;
+    background-color: var(--sfondo-p);
+    color: var(--testo-p);
+    font-size: 1rem;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#telefono {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid var(--testo-s);
+    border-radius: 4px;
+    background-color: var(--sfondo-p);
+    color: var(--testo-p);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* BOTTONI E LINK */
+
+.btn-primario {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--colore-primario);
+    color: var(--sfondo-p);
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primario:hover {
+    background-color: var(--colore-secondario);
+
+
+.registrazione-container p {
+    text-align: center;
+    color: var(--testo-s);
+    font-size: 0.95rem;
+}
+
+.registrazione-container p a {
+    color: var(--testo-p);
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.registrazione-container p a:hover {
+    color: var(--colore-secondario);
+}
+
+/* ERRORI */
+
+.testo-errore, #emailFeedback {
+    color: var(--errore);
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 4px;
+    min-height: 1.2em;
+}

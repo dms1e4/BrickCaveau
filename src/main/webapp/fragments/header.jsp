@@ -6,7 +6,7 @@
     <div class="top-bar">
         <div class="logo">
             <a href="${pageContext.request.contextPath}/index.jsp">
-                <img src="${pageContext.request.contextPath}/images/logo.png" alt="Logo BrickCaveau" class="logo-img">
+                <img src="${pageContext.request.contextPath}/images/logo_bianco.png" alt="Logo BrickCaveau" class="logo-img">
             </a>
         </div>
         

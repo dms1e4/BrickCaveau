@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrazione - BrickCaveau</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/registrazione.css">
     
     <script src="${pageContext.request.contextPath}/js/validazione.js" defer></script>
 </head>
