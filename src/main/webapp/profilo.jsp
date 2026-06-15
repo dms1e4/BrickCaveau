@@ -47,6 +47,7 @@
                                         <th>Data</th>
                                         <th>Totale</th>
                                         <th>Stato</th>
+                                        <th>Azioni</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,7 +56,12 @@
                                             <td>#${ordine.id}</td> 
                                             <td>${ordine.dataOrdine}</td>
                                             <td>€ ${ordine.totale}</td>
-                                            <td><span>Completato</span></td>
+                                            <td><span>${ordine.statoSpedizione}</span></td>
+                                            <td>
+											    <a href="${pageContext.request.contextPath}/FatturaServlet?id=${ordine.id}" 
+											       class="btn-secondario" >Visualizza / Stampa</a>
+											</td>
+                                            
                                         </tr>
                                     </c:forEach>
                                 </tbody>

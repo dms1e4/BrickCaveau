@@ -1,0 +1,224 @@
+@charset "UTF-8";
+@import "style.css";
+
+/* TOOLBAR BOTTONI */
+.btn-toolbar {
+    max-width: 800px;
+    margin: 20px auto 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-stampa {
+	background-color: var(--colore-primario);
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    border: none;
+}
+
+.btn-stampa:hover {
+    background-color: #A30D25;
+}
+
+/* CONTENITORE FATTURA */
+.fattura-box {
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: #FFFFFF;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    box-sizing: border-box;
+}
+
+/* --- INTESTAZIONE --- */
+.intestazione {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 3px solid var(--colore-primario);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.titolo-brand {
+    color: var(--colore-primario);
+    margin: 0 0 5px 0;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.sottotitolo-brand {
+    color: var(--testo-s);
+    margin: 0 0 15px 0;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.intestazione p {
+    margin: 2px 0;
+    color: var(--testo-p);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.allineamento-destra {
+    text-align: right;
+}
+
+.titolo-documento {
+    color: var(--sfondo-s);
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+}
+
+/* --- DATI CLIENTE --- */
+.dati-cliente {
+    margin-bottom: 40px;
+}
+
+.sezione-titolo {
+    font-size: 1.1rem;
+    color: var(--testo-s);
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 5px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.paragrafo-dati {
+    margin: 0;
+    line-height: 1.6;
+    color: var(--testo-p);
+    font-size: 1rem;
+}
+
+/* --- TABELLA PRODOTTI --- */
+.tabella-prodotti {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+.tabella-prodotti th {
+    background-color: var(--sfondo-s);
+    color: #FFFFFF;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid var(--sfondo-s);
+}
+
+.tabella-prodotti td {
+    padding: 12px;
+    border-bottom: 1px solid #E2E8F0;
+    color: var(--testo-p);
+    font-size: 0.95rem;
+}
+
+.tabella-prodotti tr:last-child td {
+    border-bottom: 2px solid var(--sfondo-s);
+}
+
+/* TABELLA */
+.centro {
+	text-align: center;
+}
+
+.destra {
+	text-align: right;
+}
+
+.tabella-prodotti th:not(.centro):not(.destra) {
+	text-align: left;
+}
+
+.l-evidenziato {
+    font-weight: 700;
+    color: var(--testo-p);
+}
+
+/* TOTALI */
+.totali-box {
+    text-align: right;
+    background-color: var(--sfondo-p);
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid #E2E8F0;
+}
+
+.totale-definitivo {
+    margin: 0 0 10px 0;
+    font-size: 1.6rem;
+    color: var(--testo-p);
+}
+
+.colore-totale {
+    color: var(--colore-primario);
+}
+
+.nota-fiscale {
+    margin: 0;
+    color: var(--testo-s);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* MEDIA QUERY PER STAMPA */
+@media print {
+
+    .btn-toolbar, .no-print, header, footer, nav, .navbar {
+        display: none !important;
+    }
+    
+    @page {
+        margin: 0.5cm;
+        size: auto;
+    }
+
+    body {
+        background-color: #FFFFFF;
+        padding: 0;
+        margin: 0;
+    }
+
+    .fattura-box {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        border: none;
+    }
+
+    .tabella-prodotti th {
+        background-color: #F8F9FA !important;
+        color: #000000 !important;
+        border: 1px solid #000000;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .tabella-prodotti td {
+        border-bottom: 1px solid #CCCCCC;
+    }
+
+    .totali-box {
+        background-color: transparent;
+        border: none;
+        padding-right: 0;
+    }
+
+
+    tr, .dati-cliente, .totali-box {
+        page-break-inside: avoid;
+    }
+}

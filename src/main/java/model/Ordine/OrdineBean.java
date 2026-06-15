@@ -12,6 +12,7 @@ public class OrdineBean implements Serializable {
     private int utenteId;
     private Integer indirizzoId;
     private Integer metodoPagamentoId;
+    private String statoSpedizione;
 
     public OrdineBean() {}
 
@@ -32,4 +33,7 @@ public class OrdineBean implements Serializable {
 
     public Integer getMetodoPagamentoId() { return metodoPagamentoId; }
     public void setMetodoPagamentoId(Integer metodoPagamentoId) { this.metodoPagamentoId = metodoPagamentoId; }
+    
+    public String getStatoSpedizione() { return statoSpedizione; }
+    public void setStatoSpedizione(String statoSpedizione) { this.statoSpedizione = statoSpedizione; }
 }

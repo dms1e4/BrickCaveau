@@ -6,6 +6,7 @@ import java.util.*;
 import javax.sql.DataSource;
 
 import model.Carrello;
+import model.DettaglioOrdineBean;
 
 public class OrdineDAO {
 
@@ -143,6 +144,61 @@ public class OrdineDAO {
         }
         return ordini;
     }
+    
+    public Collection<DettaglioOrdineBean> doRetrieveDettagliByOrdine(int idOrdine) throws SQLException {
+        Collection<DettaglioOrdineBean> dettagli = new ArrayList<>();
+        
+        String query = "SELECT d.*, s.Nome AS Nome_Set FROM Dettaglio_Ordine d " +
+                       "LEFT JOIN Set_Lego s ON d.Codice_Set = s.Codice_Set " +
+                       "WHERE d.Ordine_ID = ?";
+                       
+        try (Connection con = ds.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+             
+            ps.setInt(1, idOrdine);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    DettaglioOrdineBean bean = new DettaglioOrdineBean();
+                    bean.setId(rs.getInt("ID"));
+                    bean.setOrdineId(rs.getInt("Ordine_ID"));
+                    bean.setCodiceSet(rs.getInt("Codice_Set"));
+                    
+                    String nome = rs.getString("Nome_Set");
+                    bean.setNomeSet(nome);
+                    
+                    bean.setQuantita(rs.getInt("Quantita"));
+                    bean.setPrezzoAcquisto(rs.getDouble("Prezzo_Acquisto"));
+                    bean.setIva(rs.getDouble("IVA"));
+                    
+                    dettagli.add(bean);
+                }
+            }
+        }
+        return dettagli;
+    }
+    
+    public OrdineBean doRetrieveByKey(int idOrdine) throws SQLException {
+        String query = "SELECT * FROM Ordine WHERE ID = ?";
+        
+        try (Connection con = ds.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            
+            ps.setInt(1, idOrdine);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    OrdineBean bean = new OrdineBean();
+                    bean.setId(rs.getInt("ID"));
+                    bean.setTotale(rs.getDouble("Totale"));
+                    bean.setDataOrdine(rs.getDate("Data_Acquisto"));
+                    bean.setUtenteId(rs.getInt("Utente_ID"));
+                    bean.setIndirizzoId(rs.getInt("Indirizzo_ID"));
+                    bean.setMetodoPagamentoId(rs.getInt("MetodoPagamento_ID"));
+                    return bean;
+                }
+            }
+        }
+        return null;
+    }
 
 
     public List<OrdineBean> doRetrieveWithFiltersAdmin(String dataInizio, String dataFine, Integer idUtente) throws SQLException {
@@ -180,6 +236,7 @@ public class OrdineDAO {
         bean.setUtenteId(rs.getInt("Utente_ID"));
         bean.setIndirizzoId((Integer) rs.getObject("Indirizzo_ID"));
         bean.setMetodoPagamentoId((Integer) rs.getObject("MetodoPagamento_ID"));
+        bean.setStatoSpedizione(rs.getString("Stato_Spedizione"));
         return bean;
     }
 }

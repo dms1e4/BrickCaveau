@@ -11,6 +11,7 @@ public class DettaglioOrdineBean implements Serializable {
     private int quantita;
     private double prezzoAcquisto;
     private double iva;
+    private String nomeSet;
 
     public DettaglioOrdineBean() {}
 
@@ -31,4 +32,14 @@ public class DettaglioOrdineBean implements Serializable {
 
     public double getIva() { return iva; }
     public void setIva(double iva) { this.iva = iva; }
+    
+    public String getNomeSet() {
+    	return nomeSet;
+    }
+    public void setNomeSet (String nomeSet) {
+    	this.nomeSet = nomeSet;
+    }
+    public double getTotaleRiga() {
+    	return this.prezzoAcquisto * this.quantita;
+    }
 }

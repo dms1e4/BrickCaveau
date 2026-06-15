@@ -271,6 +271,7 @@ input[type="range"] {
     background-color: var(--sfondo-s); 
     color: var(--sfondo-p);
     text-decoration: none;
+    text-align: center;
 }
 
 .btn-secondario:hover {
