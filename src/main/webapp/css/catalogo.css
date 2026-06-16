@@ -263,7 +263,7 @@ input[type="range"] {
     transition: all 0.2s ease;
     width: 100%;
     box-sizing: border-box;
-    text-align: center;
+    text-align: center !important;
     font-size: 0.95rem;
 }
 
@@ -271,7 +271,7 @@ input[type="range"] {
     background-color: var(--sfondo-s); 
     color: var(--sfondo-p);
     text-decoration: none;
-    text-align: center;
+    text-align: center !important;
 }
 
 .btn-secondario:hover {

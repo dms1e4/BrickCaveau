@@ -61,4 +61,16 @@ public class MetodoPagamentoDAO {
         }
         return false;
     }
+    
+    public void doDelete(int idMetodo, int idUtente) throws SQLException {
+        String query = "DELETE FROM MetodoPagamento WHERE ID = ? AND Utente_ID = ?";
+        
+        try (Connection con = ds.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            
+            ps.setInt(1, idMetodo);
+            ps.setInt(2, idUtente);
+            ps.executeUpdate();
+        }
+    }
 }

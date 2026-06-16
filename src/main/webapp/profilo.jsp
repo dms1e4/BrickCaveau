@@ -32,6 +32,9 @@
         <c:if test="${param.error == 'carta_scaduta'}">
             <div class="alert-errore">Errore: La data di scadenza inserita non è valida.</div>
         </c:if>
+        <c:if test="${param.success == 'metodo_rimosso'}">
+		    <div class="alert-successo">Il metodo di pagamento è stato rimosso correttamente.</div>
+		</c:if>
         
         <div class="profilo-grid">
             <%-- dati personali --%>
@@ -50,6 +53,12 @@
                                 <li>
                                     <strong>${metodo.tipo}</strong> terminante in <strong>**** ${metodo.ultime4Cifre}</strong> 
                                     <br><span>Scadenza: ${metodo.scadenza}</span>
+                                    
+                                    <form action="${pageContext.request.contextPath}/RimuoviMetodoServlet" method="POST" 
+						              onsubmit="return confirm('Sei sicuro di voler rimuovere definitivamente questa carta?');">
+						            <input type="hidden" name="idMetodo" value="${metodo.id}">
+									<button type="submit" class="btn-secondario">Rimuovi</button>
+						        </form>
                                 </li>
                             </c:forEach>
                         </ul>

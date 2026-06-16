@@ -163,6 +163,23 @@
 	font-weight: bold;
 }
 
+.btn-primario, .btn-secondario {
+	padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center !important;
+    font-size: 0.95rem;
+    background-color: var(--sfondo-s); 
+    color: var(--sfondo-p);
+    text-decoration: none;
+}
+
 /* MEDIA QUERY PER MOBILE */
 
 @media (max-width: 768px) {
