@@ -39,7 +39,7 @@
 
             <div class="about-section">
                 <h2>Il Nostro Team</h2>
-                <p>Dietro alle righe di codice e alla gestione del magazzino ci siamo noi::</p>
+                <p>Dietro alle righe di codice e alla gestione del magazzino ci siamo noi:</p>
                 
                 <div class="team-grid">
                     <div class="team-member">

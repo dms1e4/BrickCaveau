@@ -253,17 +253,20 @@ input[type="range"] {
 }
 
 /* BOTTONE DETTAGLIO */
+
 .btn-secondario, .btn-primario {
     padding: 10px 15px;
     border: none;
     cursor: pointer;
     border-radius: 4px;
     font-weight: 600;
-    display: inline-block;
+    
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px;
     transition: all 0.2s ease;
-    width: 100%;
     box-sizing: border-box;
-    text-align: center !important;
     font-size: 0.95rem;
 }
 
@@ -271,7 +274,7 @@ input[type="range"] {
     background-color: var(--sfondo-s); 
     color: var(--sfondo-p);
     text-decoration: none;
-    text-align: center !important;
+    flex: 1;
 }
 
 .btn-secondario:hover {
@@ -279,17 +282,9 @@ input[type="range"] {
     transform: scale(1.02);
 }
 
-.btn-secondario, .azioni-prodotto form {
-    flex: 1;
-    display: flex;
-}
-
 .btn-primario {
     background-color: var(--colore-primario);
     color: #FFFFFF;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .btn-primario:hover {
@@ -298,13 +293,16 @@ input[type="range"] {
     transform: scale(1.02);
 }
 
+
 .azioni-prodotto form {
     margin: 0;
+    flex: 0 0 auto;
+    display: flex;
 }
 
 .azioni-prodotto form .btn-primario {
     margin: 0;
-    flex: 1;
+    padding: 10px 15px; 
 }
 
 .icona-carrello {
@@ -313,6 +311,7 @@ input[type="range"] {
     object-fit: contain;
     display: block;
 }
+
 
 /* MEDIA QUERY PER TABLET */
 
