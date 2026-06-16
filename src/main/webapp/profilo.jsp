@@ -48,11 +48,15 @@
                 <%-- aggiungere carta --%>
                 <div>
                     <h3>Aggiungi Nuova Carta</h3>
-                    <form action="${pageContext.request.contextPath}/AggiungiMetodoServlet" method="POST">
+                    <form id="form-carta" action="${pageContext.request.contextPath}/AggiungiMetodoServlet" method="POST">
                         <input type="hidden" name="tipo" value="Carta di Credito">
                         
                         <label for="numeroCarta">Numero Carta:</label>
                         <input type="text" id="numeroCarta" name="numeroCarta" maxlength="16" pattern="\d{16}" required placeholder="1234567812345678">
+                        
+                        <div id="errore-luhn">
+                        	Numero di carta non valido. Controlla di averlo digitato correttamente.
+                        </div>
                         
                         <label for="scadenza">Data Scadenza:</label>
                         <input type="date" id="scadenza" name="scadenza" required>
@@ -105,7 +109,8 @@
             </section>
         </div>
     </main>
-
+	
+	<script src="/js/luhn.js"></script>
     <jsp:include page="/fragments/footer.jsp" />
 </body>
 </html>
