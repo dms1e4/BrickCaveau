@@ -128,6 +128,82 @@
     display: block;
 }
 
+/* INDIRIZZO */
+
+.card-profilo li div {
+    flex-grow: 1;
+}
+
+.card-profilo ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-profilo ul li form {
+    margin: 0;
+}
+
+.card-profilo ul li form button {
+    background-color: var(--errore);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.card-profilo ul li form button:hover {
+    background-color: #B91C1C; /* rosso più scuro quando passiamo il mouse */
+}
+
+
+/* FORM AGGIUNTA INDIRIZZO */
+
+.card-profilo > div > form[action*="AggiungiIndirizzoServlet"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.card-profilo > div > form[action*="AggiungiIndirizzoServlet"] div {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-profilo > div > form[action*="AggiungiIndirizzoServlet"] label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--testo-p);
+    margin-bottom: 5px;
+}
+
+.card-profilo > div > form[action*="AggiungiIndirizzoServlet"] input[type="text"] {
+    padding: 10px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: var(--testo-p);
+    transition: all 0.2s ease;
+    background-color: #FFFFFF;
+}
+
+.card-profilo > div > form[action*="AggiungiIndirizzoServlet"] input[type="text"]:focus {
+    border-color: var(--colore-primario);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+
+.card-profilo > div > form[action*="AggiungiIndirizzoServlet"] .btn-primario {
+    grid-column: 1 / -1; 
+    margin-top: 10px;
+}
+
 /* TABELLA ORDINI */
 
 .ordini-table {
@@ -191,5 +267,9 @@
         display: block;
         overflow-x: auto;
         white-space: nowrap;
+    }
+    
+    .card-profilo > div > form[action*="AggiungiIndirizzoServlet"] {
+        grid-template-columns: 1fr; 
     }
 }

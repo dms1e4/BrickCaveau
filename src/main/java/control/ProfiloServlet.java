@@ -18,6 +18,8 @@ import javax.sql.DataSource;
 import model.Ordine.OrdineBean;
 import model.Ordine.OrdineDAO;
 import model.Utente.UtenteBean;
+import model.Indirizzo.IndirizzoBean;
+import model.Indirizzo.IndirizzoDAO;
 import model.MetodoPagamento.*;
 
 @WebServlet("/ProfiloServlet")
@@ -52,14 +54,17 @@ public class ProfiloServlet extends HttpServlet {
         try {
             OrdineDAO ordineDAO = new OrdineDAO(ds);
             MetodoPagamentoDAO metodoDAO = new MetodoPagamentoDAO(ds);
+            IndirizzoDAO indirizzoDAO = new IndirizzoDAO(ds);
             
             // recupero ordini e metodi di pagamento dell'utente in base all'id
             Collection<OrdineBean> ordiniUtente = ordineDAO.doRetrieveByUtente(utente.getIdUtente());
             Collection<MetodoPagamentoBean> metodi = metodoDAO.doRetrieveByUtente(utente.getIdUtente());
+            Collection<IndirizzoBean> indirizzi = indirizzoDAO.doRetrieveByUtente(utente.getIdUtente());
             
             // salvo nella request
             request.setAttribute("listaOrdiniCliente", ordiniUtente);
             request.setAttribute("listaMetodi", metodi);
+            request.setAttribute("listaIndirizzi", indirizzi);
             
             // inoltro alla JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/profilo.jsp");
