@@ -1,7 +1,10 @@
 package control;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -50,16 +53,31 @@ public class AggiungiMetodoServlet extends HttpServlet {
         
         // prendo solo le ultime 4 cifre
         String ultime4 = numeroCompleto.substring(numeroCompleto.length() - 4);
+        Date dataScadenza = Date.valueOf(scadenzaString);
         
-        MetodoPagamentoBean metodo = new MetodoPagamentoBean();
-        metodo.setTipo(tipo);
-        metodo.setUltime4Cifre(ultime4);
-        metodo.setScadenza(java.sql.Date.valueOf(scadenzaString));
-        metodo.setUtenteId(utente.getIdUtente());
-        
+        // controllo se la carta è scaduta
+        if (dataScadenza.before(Date.valueOf(LocalDate.now()))) {
+            response.sendRedirect(request.getContextPath() + "/ProfiloServlet?error=carta_scaduta");
+            return;
+        }
+
         try {
             MetodoPagamentoDAO dao = new MetodoPagamentoDAO(ds);
+            
+            // controllo se la carta è già inserita
+            if (dao.isDuplicato(utente.getIdUtente(), ultime4)) {
+                response.sendRedirect(request.getContextPath() + "/ProfiloServlet?error=carta_duplicata");
+                return;
+            }
+            
+            MetodoPagamentoBean metodo = new MetodoPagamentoBean();
+            metodo.setTipo(tipo);
+            metodo.setUltime4Cifre(ultime4);
+            metodo.setScadenza(Date.valueOf(scadenzaString));
+            metodo.setUtenteId(utente.getIdUtente());
+            
             dao.doSave(metodo);
+            
             // reindirizzo al profilo con messaggio di successo
             response.sendRedirect(request.getContextPath() + "/ProfiloServlet?success=metodo_aggiunto");
         } catch (SQLException e) {

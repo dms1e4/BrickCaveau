@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -10,15 +11,28 @@
 </head>
 <body>
     <jsp:include page="/fragments/header.jsp" />
-
     <main class="profilo-container">
         <h1>Area Personale</h1>
         <p>Benvenuto nel tuo profilo, <strong>${sessionScope.utente.nome}</strong>!</p>
+        
+        <%-- NOTIFICHE ED ERRORI (PARAMETRO IN URL) --%>
+		
 		<c:if test="${param.success == 'ordine_completato'}">
-		    <div class="ordine-completato">
-		        Ordine completato con successo! Grazie per il tuo acquisto su BrickCaveau.
-		    </div>
-		</c:if>
+            <div class="alert-successo">Ordine completato con successo! Grazie per il tuo acquisto.</div>
+        </c:if>
+        
+        <c:if test="${param.success == 'metodo_aggiunto'}">
+            <div class="alert-successo">Nuovo metodo di pagamento salvato con successo!</div>
+        </c:if>
+
+        <c:if test="${param.error == 'carta_duplicata'}">
+            <div class="alert-errore">Errore: Hai già salvato una carta che termina con queste cifre.</div>
+        </c:if>
+
+        <c:if test="${param.error == 'carta_scaduta'}">
+            <div class="alert-errore">Errore: La data di scadenza inserita non è valida.</div>
+        </c:if>
+        
         <div class="profilo-grid">
             <%-- dati personali --%>
             <section class="card-profilo">
@@ -59,7 +73,7 @@
                         </div>
                         
                         <label for="scadenza">Data Scadenza:</label>
-                        <input type="date" id="scadenza" name="scadenza" required>
+                        <input type="date" id="scadenza" name="scadenza" min="<%= LocalDate.now().toString() %>" required>
                         
                         <button type="submit" class="btn-primario">Salva Metodo</button>
                     </form>

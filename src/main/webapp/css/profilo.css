@@ -64,6 +64,13 @@
 	font-weight: bold;
 } 
 
+#errore-luhn {
+	display: none; /* non mostrare errore se non è stato verificato il numero */
+	color: var(--errore);
+	font-size: 0.85rem;
+	margin-top: 15px;
+}
+
 @media (max-width: 768px) {
 	.profilo-grid { 
 		grid-template-columns: 1fr;

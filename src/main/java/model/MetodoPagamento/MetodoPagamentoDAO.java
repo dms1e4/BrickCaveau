@@ -46,4 +46,19 @@ public class MetodoPagamentoDAO {
         }
         return metodi;
     }
+    
+    public boolean isDuplicato(int idUtente, String ultime4Cifre) throws SQLException {
+        String query = "SELECT COUNT(*) FROM MetodoPagamento WHERE Utente_ID = ? AND Ultime4Cifre = ?";
+        try (Connection con = ds.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, idUtente);
+            ps.setString(2, ultime4Cifre);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
 }
