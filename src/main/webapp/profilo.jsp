@@ -59,7 +59,7 @@
                                             <td><span>${ordine.statoSpedizione}</span></td>
                                             <td>
 											    <a href="${pageContext.request.contextPath}/FatturaServlet?id=${ordine.id}" 
-											       class="btn-secondario" >Visualizza / Stampa</a>
+											       class="btn-secondario" >Visualizza</a>
 											</td>
                                             
                                         </tr>
