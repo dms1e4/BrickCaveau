@@ -65,7 +65,7 @@ public class LoginServlet extends HttpServlet {
                 if (utente.is_Admin()) {
                     response.sendRedirect(request.getContextPath() + "/admin/dashboardServlet");
                 } else {
-                    response.sendRedirect(request.getContextPath() + "/index.jsp");
+                    response.sendRedirect(request.getContextPath() + "/Home");
                 }
             } else {
                 // credenziali errate
