@@ -24,20 +24,44 @@
             <c:choose>
             	<%-- Utente ADMIN --%>
             	<c:when test="${not empty sessionScope.utente and sessionScope.utente.is_Admin()}">
-			        <a href="${pageContext.request.contextPath}/admin/dashboardServlet" class="icona">Dashboard Admin</a>
-			        <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">Esci</a>
-			        <a href="${pageContext.request.contextPath}/carrello.jsp" class="icona">Carrello</a>
+            	
+			        <a href="${pageContext.request.contextPath}/admin/dashboardServlet" class="icona">
+			        <img src="${pageContext.request.contextPath}/images/icone/admin.png" alt="Admin" class="icona-img">
+			        Dashboard Admin</a>
+			        
+			        <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">
+			        <img src="${pageContext.request.contextPath}/images/icone/logout.png" alt="Esci" class="icona-img">
+			        Esci</a>
+			        
+			        <a href="${pageContext.request.contextPath}/carrello.jsp" class="icona">
+			        <img src="${pageContext.request.contextPath}/images/icone/carrello.png" alt="Carrello" class="icona-img">
+			        Carrello</a>
 			    </c:when>
 			    <%-- Utente LOGGATO --%>
                 <c:when test="${not empty sessionScope.utente}">
-                    <a href="${pageContext.request.contextPath}/ProfiloServlet" class="icona">Profilo</a>
-                    <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">Esci</a>
-                    <a href="${pageContext.request.contextPath}/carrello.jsp" class="icona">Carrello</a>
+                
+                    <a href="${pageContext.request.contextPath}/ProfiloServlet" class="icona">
+                    <img src="${pageContext.request.contextPath}/images/icone/profilo.png" alt="Profilo" class="icona-img">
+                    Profilo</a>
+                    
+                    <a href="${pageContext.request.contextPath}/LogoutServlet" class="icona">
+                    <img src="${pageContext.request.contextPath}/images/icone/logout.png" alt="Esci" class="icona-img">
+                    Esci</a>
+                    <a href="${pageContext.request.contextPath}/carrello.jsp" class="icona">
+                    <img src="${pageContext.request.contextPath}/images/icone/carrello.png" alt="Carrello" class="icona-img">
+                    Carrello</a>
+                    
                 </c:when>
                 <%-- Utente VISITATORE --%>
                 <c:otherwise>
-                    <a href="${pageContext.request.contextPath}/login.jsp" class="icona">Accedi / Registrati</a>
-                    <a href="${pageContext.request.contextPath}/login.jsp?error=Devi effettuare l'accesso per usare il carrello" class="icona">Carrello</a>
+                
+                    <a href="${pageContext.request.contextPath}/login.jsp" class="icona">
+                    <img src="${pageContext.request.contextPath}/images/icone/profilo.png" alt="Accedi" class="icona-img">
+                    Accedi / Registrati</a>
+                    
+                    <a href="${pageContext.request.contextPath}/login.jsp?error=Devi effettuare l'accesso per usare il carrello" class="icona">
+                    <img src="${pageContext.request.contextPath}/images/icone/carrello.png" alt="Carrello" class="icona-img">
+                    Carrello</a>
                 </c:otherwise>
             </c:choose>
         </div>
