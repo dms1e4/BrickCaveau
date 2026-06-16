@@ -1,6 +1,8 @@
 @charset "UTF-8";
 @import "style.css";
 
+/* PROFILO */
+
 .profilo-container {
 	max-width: 1000px;
 	margin: 40px auto;
@@ -13,6 +15,30 @@
 	gap: 30px;
 	margin-top: 20px;
 }
+
+/* ALERT E NOTIFICHE */
+
+.alert-successo, .alert-errore {
+	padding: 15px;
+	margin-bottom: 25px;
+	border-radius: 6px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.alert-successo {
+	background-color: #16a34a1a; /* verde chiaro */
+	color: var(--successo);
+	border: 1px solid var(--successo);
+}
+
+.alert-errore {
+	background-color: #dc26261a; /* rosso chiaro */
+	color: var(--errore);
+	border: 1px solid var(--errore);
+}
+
+/* CARD */
 
 .card-profilo { 
 	background: #f9f9f9;
@@ -33,6 +59,77 @@
 	font-size: 1.1rem;
 }
 
+/* METODI DI PAGAMENTO */
+
+.card-profilo ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 25px 0;
+}
+
+.card-profilo ul li {
+	background-color: var(--sfondo-p);
+    border: 1px solid #E2E8F0;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--testo-p);
+}
+
+.card-profilo ul li span {
+    font-size: 0.85rem;
+    color: var(--testo-s);
+}
+
+/* FORM DI AGGIUNTA METODO DI PAGAMENTO */
+
+#form-carta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#form-carta label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--testo-p);
+}
+
+#form-carta input[type="text"],
+#form-carta input[type="date"] {
+    padding: 10px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    font-size: 1rem;
+    color: var(--testo-p);
+    transition: all 0.2s ease;
+    background-color: #FFFFFF;
+}
+
+#form-carta input[type="text"]:focus,
+#form-carta input[type="date"]:focus {
+    border-color: var(--colore-primario);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+/* GESTIONE ERRORE LUHN */
+
+#errore-luhn {
+	display: none; 
+	color: var(--errore);
+	font-size: 0.85rem;
+    font-weight: 600;
+	margin-top: -5px;
+}
+
+#errore-luhn.mostra-errore {
+    display: block;
+}
+
+/* TABELLA ORDINI */
+
 .ordini-table {
 	width: 100%;
 	border-collapse: collapse;
@@ -50,6 +147,8 @@
 	color: white;
 }
    
+/* BOTTONI E LINK */
+
 .vai-catalogo {
 	text-decoration: underline;
 }    
@@ -62,17 +161,18 @@
 	border-radius: 5px;
 	text-align: center;
 	font-weight: bold;
-} 
-
-#errore-luhn {
-	display: none !important; /* non mostrare errore se non è stato verificato il numero */
-	color: var(--errore);
-	font-size: 0.85rem;
-	margin-top: 15px;
 }
+
+/* MEDIA QUERY PER MOBILE */
 
 @media (max-width: 768px) {
 	.profilo-grid { 
 		grid-template-columns: 1fr;
 		}
+		
+	.ordini-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
 }

@@ -7,14 +7,14 @@ function eseguiControlloLuhn(event) {
         // se è falso blocco invio di dati
         event.preventDefault(); 
         
-        msgErrore.style.setProperty("display", "block", "important");
+        msgErrore.classList.add("mostra-errore");
         inputNumero.style.borderColor = "var(--errore)";
         
         return false;
     }
 
     // se è vero, passo a servlet
-    msgErrore.style.setProperty("display", "none", "important");
+    msgErrore.classList.remove("mostra-errore");
     return true;
 }
 
@@ -43,9 +43,11 @@ function validaLuhn(num) {
 // resetto l'errore quando l'utente clicca per correggere
 document.addEventListener("DOMContentLoaded", function() {
     const inputNum = document.getElementById("numeroCarta");
+    const msgErrore = document.getElementById("errore-luhn");
+    
     if (inputNum) {
         inputNum.addEventListener("input", function() {
-            document.getElementById("errore-luhn").style.setProperty("display", "none", "important");
+            msgErrore.classList.remove("mostra-errore");
             inputNum.style.borderColor = "";
         });
     }
