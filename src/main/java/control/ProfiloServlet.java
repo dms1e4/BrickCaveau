@@ -18,6 +18,7 @@ import javax.sql.DataSource;
 import model.Ordine.OrdineBean;
 import model.Ordine.OrdineDAO;
 import model.Utente.UtenteBean;
+import model.MetodoPagamento.*;
 
 @WebServlet("/ProfiloServlet")
 public class ProfiloServlet extends HttpServlet {
@@ -50,12 +51,15 @@ public class ProfiloServlet extends HttpServlet {
 
         try {
             OrdineDAO ordineDAO = new OrdineDAO(ds);
+            MetodoPagamentoDAO metodoDAO = new MetodoPagamentoDAO(ds);
             
-            // recupero ordini dell'utente in base all'id
+            // recupero ordini e metodi di pagamento dell'utente in base all'id
             Collection<OrdineBean> ordiniUtente = ordineDAO.doRetrieveByUtente(utente.getIdUtente());
+            Collection<MetodoPagamentoBean> metodi = metodoDAO.doRetrieveByUtente(utente.getIdUtente());
             
             // salvo nella request
             request.setAttribute("listaOrdiniCliente", ordiniUtente);
+            request.setAttribute("listaMetodi", metodi);
             
             // inoltro alla JSP
             RequestDispatcher dispatcher = request.getRequestDispatcher("/profilo.jsp");

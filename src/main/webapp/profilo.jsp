@@ -27,6 +27,39 @@
                 <div class="info-riga"><strong>Cognome:</strong> ${sessionScope.utente.cognome}</div>
                 <div class="info-riga"><strong>Email:</strong> ${sessionScope.utente.email}</div>
                 <%-- campi futuri: indirizzo ecc. --%>
+                
+                <h2>I tuoi Metodi di Pagamento</h2>
+                <c:choose>
+                	<c:when test="${not empty listaMetodi}">
+                        <ul>
+                            <c:forEach var="metodo" items="${listaMetodi}">
+                                <li>
+                                    <strong>${metodo.tipo}</strong> terminante in <strong>**** ${metodo.ultime4Cifre}</strong> 
+                                    <br><span>Scadenza: ${metodo.scadenza}</span>
+                                </li>
+                            </c:forEach>
+                        </ul>
+                    </c:when>
+                    <c:otherwise>
+                        <p>Non hai ancora salvato nessun metodo di pagamento.</p>
+                    </c:otherwise>
+                </c:choose>
+
+                <%-- aggiungere carta --%>
+                <div>
+                    <h3>Aggiungi Nuova Carta</h3>
+                    <form action="${pageContext.request.contextPath}/AggiungiMetodoServlet" method="POST">
+                        <input type="hidden" name="tipo" value="Carta di Credito">
+                        
+                        <label for="numeroCarta">Numero Carta:</label>
+                        <input type="text" id="numeroCarta" name="numeroCarta" maxlength="16" pattern="\d{16}" required placeholder="1234567812345678">
+                        
+                        <label for="scadenza">Data Scadenza:</label>
+                        <input type="date" id="scadenza" name="scadenza" required>
+                        
+                        <button type="submit" class="btn-primario">Salva Metodo</button>
+                    </form>
+                </div>
             </section>
 
             <%-- storico ordini --%>
