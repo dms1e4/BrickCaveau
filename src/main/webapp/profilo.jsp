@@ -62,7 +62,7 @@
                 <%-- aggiungere carta --%>
                 <div>
                     <h3>Aggiungi Nuova Carta</h3>
-                    <form id="form-carta" action="${pageContext.request.contextPath}/AggiungiMetodoServlet" method="POST">
+                    <form id="form-carta" onsubmit="return eseguiControlloLuhn(event)" action="${pageContext.request.contextPath}/AggiungiMetodoServlet" method="POST">
                         <input type="hidden" name="tipo" value="Carta di Credito">
                         
                         <label for="numeroCarta">Numero Carta:</label>
@@ -124,7 +124,7 @@
         </div>
     </main>
 	
-	<script src="/js/luhn.js"></script>
+	<script src="${pageContext.request.contextPath}/js/luhn.js"></script>
     <jsp:include page="/fragments/footer.jsp" />
 </body>
 </html>
