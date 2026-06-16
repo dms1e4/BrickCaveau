@@ -222,7 +222,7 @@ input[type="range"] {
     border-color: var(--colore-primario);
 }
 
-.card-prodotto img {
+.card-prodotto > img {
     width: 100%;
     height: 200px;
     object-fit: contain;
@@ -287,6 +287,9 @@ input[type="range"] {
 .btn-primario {
     background-color: var(--colore-primario);
     color: #FFFFFF;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-primario:hover {
@@ -302,6 +305,13 @@ input[type="range"] {
 .azioni-prodotto form .btn-primario {
     margin: 0;
     flex: 1;
+}
+
+.icona-carrello {
+    height: 1.2rem;      
+    width: auto;          
+    object-fit: contain;
+    display: block;
 }
 
 /* MEDIA QUERY PER TABLET */
