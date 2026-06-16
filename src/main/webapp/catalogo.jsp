@@ -105,11 +105,13 @@
                                 <div class="azioni-prodotto">
                                     <a href="${pageContext.request.contextPath}/ProdottoServlet?id=${set.codiceSet}" class="btn-secondario">Dettagli</a>
                                     
-                                    <form action="${pageContext.request.contextPath}/CarrelloServlet" method="POST">
-                                        <input type="hidden" name="azione" value="aggiungi">
-                                        <input type="hidden" name="id" value="${set.codiceSet}">
-                                        <button type="submit" class="btn-primario">Aggiungi</button>
-                                    </form>
+								<form action="${pageContext.request.contextPath}/CarrelloServlet" method="POST">
+    								<input type="hidden" name="azione" value="aggiungi">
+    								<input type="hidden" name="id" value="${set.codiceSet}">
+    								<button type="submit" class="btn-primario">
+        								<img src="${pageContext.request.contextPath}/images/icone/cart_plus_solid_full.png" alt="Aggiungi" class="icona-carrello">
+    								</button>
+                                </form>
                                 </div>
                             </div>
                         </c:forEach>
