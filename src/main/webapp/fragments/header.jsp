@@ -2,6 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/ricerca.css">
 
+<head>
+	<script>
+		const contextPath = "${pageContext.request.contextPath}";
+	</script>
+</head>
+
 <header>
     <div class="top-bar">
         <div class="logo">
@@ -24,7 +30,10 @@
             <c:choose>
             	<%-- Utente ADMIN --%>
             	<c:when test="${not empty sessionScope.utente and sessionScope.utente.is_Admin()}">
-            	
+				    <a href="${pageContext.request.contextPath}/WishlistServlet" class="icona">
+				    <img src="${pageContext.request.contextPath}/images/icone/wishlist.png" alt="Wishlist" class="icona-img">
+				    Wishlist</a>
+				    
 			        <a href="${pageContext.request.contextPath}/admin/dashboardServlet" class="icona">
 			        <img src="${pageContext.request.contextPath}/images/icone/admin.png" alt="Admin" class="icona-img">
 			        Dashboard Admin</a>
@@ -40,6 +49,10 @@
 			    <%-- Utente LOGGATO --%>
                 <c:when test="${not empty sessionScope.utente}">
                 
+                	<a href="${pageContext.request.contextPath}/WishlistServlet" class="icona">
+				    <img src="${pageContext.request.contextPath}/images/icone/wishlist.png" alt="Wishlist" class="icona-img">
+				    Wishlist</a>
+				    
                     <a href="${pageContext.request.contextPath}/ProfiloServlet" class="icona">
                     <img src="${pageContext.request.contextPath}/images/icone/profilo.png" alt="Profilo" class="icona-img">
                     Profilo</a>

@@ -94,7 +94,21 @@
                                  data-anno-uscita="${set.annoUscita}" 
                                  data-anno-ritiro="${set.annoRitiro != null ? set.annoRitiro : 0}" 
                                  data-pezzi="${set.nPezzi}">
-                                
+                                <c:choose>
+						            <c:when test="${not empty sessionScope.utente}">
+						                <button class="btn-wishlist ${wishlistIds.contains(set.codiceSet) ? 'active' : ''}" 
+									            data-id="${set.codiceSet}" 
+									            onclick="toggleWishlist(this)" 
+									            title="Aggiungi/Rimuovi dai Preferiti">
+									        ★
+									    </button>
+						            </c:when>
+						            <c:otherwise>
+						                <button class="btn-wishlist" onclick="window.location.href='${pageContext.request.contextPath}/login.jsp'" title="Accedi per salvare nei Preferiti">
+						                    ★
+						                </button>
+						            </c:otherwise>
+						        </c:choose>
                                 <img src="${pageContext.request.contextPath}/images/Set/${set.codiceSet}_1.jpg" 
                                      onerror="this.src='${pageContext.request.contextPath}/images/logo.png'" 
                                      alt="Immagine ${set.nome}">
@@ -125,5 +139,6 @@
 
     <jsp:include page="/fragments/footer.jsp" />
     <script src="${pageContext.request.contextPath}/js/filtri.js"></script>
+    <script src="${pageContext.request.contextPath}/js/wishlist.js"></script>
 </body>
 </html>

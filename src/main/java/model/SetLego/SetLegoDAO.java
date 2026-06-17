@@ -182,7 +182,7 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
     }
 
 
-    private SetLegoBean mapResultSetToBean(ResultSet rs) throws SQLException {
+    public SetLegoBean mapResultSetToBean(ResultSet rs) throws SQLException {
         SetLegoBean bean = new SetLegoBean();
         bean.setCodiceSet(rs.getInt("Codice_Set"));
         bean.setNome(rs.getString("Nome"));
