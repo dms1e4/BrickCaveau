@@ -41,7 +41,7 @@
                             <c:forEach var="item" items="${sessionScope.carrello.elementi}">
                                 <tr>
                                     <td>#${item.prodotto.codiceSet}</td>
-                                    <td><strong>${item.prodotto.nome}</strong></td>
+                                    <td><a href="${pageContext.request.contextPath}/ProdottoServlet?id=${item.prodotto.codiceSet}"><strong>${item.prodotto.nome}</strong></a></td>
                                     <td>€ ${item.prodotto.prezzo}</td>
                                     <td>
                                         <form action="${pageContext.request.contextPath}/CarrelloServlet" method="POST" class="form-qta">
