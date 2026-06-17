@@ -1,0 +1,98 @@
+@charset "UTF-8";
+@import "style.css";
+
+/* LAYOUT */
+
+main {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 5%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+main > h1 {
+    color: var(--colore-primario);
+    font-size: 2rem;
+    margin-bottom: 40px;
+    border-bottom: 3px solid var(--colore-primario);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* STELLA SULLE CARD PRODOTTO */
+
+.card-prodotto {
+    position: relative; 
+}
+
+.btn-wishlist {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #E2E8F0;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease, text-shadow 0.2s ease;
+    z-index: 10;
+    padding: 0;
+    line-height: 1;
+    
+    /* disattiva sfondo blu di selezioni su dispositivi mobile */
+    -webkit-tap-highlight-color: transparent; 
+}
+
+.btn-wishlist:hover {
+    transform: scale(1.2);
+}
+
+.btn-wishlist.active {
+    color: var(--colore-secondario);
+    text-shadow: 0 2px 4px rgba(242, 169, 0, 0.4);
+}
+
+.btn-primario {
+	text-decoration: none;
+}
+
+.icona-carrello {
+    height: 1.2rem;      
+    width: auto;          
+    object-fit: contain;
+    display: block;
+}
+
+
+/* MESSAGGIO VUOTO */
+
+.messaggio-vuoto {
+    max-width: 600px;
+    margin: 10px auto;
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    border: 2px dashed #E2E8F0;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+}
+
+.messaggio-vuoto h2 {
+    color: var(--testo-p);
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.messaggio-vuoto p {
+    color: var(--testo-s);
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+}
+
+.messaggio-vuoto .btn-primario {
+    display: inline-block;
+    width: auto;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+}

@@ -5,8 +5,17 @@
 
 .profilo-container {
 	max-width: 1000px;
-	margin: 40px auto;
+	margin: 10px auto;
 	padding: 0 20px;
+}
+
+.profilo-container h1 {
+	color: var(--colore-primario);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    border-bottom: 3px solid var(--colore-primario);
+    padding-bottom: 5px;
+    display: inline-block;
 }
 
 .profilo-grid {

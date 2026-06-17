@@ -12,9 +12,10 @@
 }
 
 .cart-container h1 {
-	color: var(--testo-p);
+	color: var(--colore-primario);
 	margin-bottom: 25px;
 	font-size: 2rem;
+	border-bottom: 3px solid var(--colore-primario);
 }
 
 /* CARRELLO VUOTO */
@@ -104,6 +105,27 @@
 	font-weight: bold;
 	cursor: pointer;
 	transition: all 0.2s ease;
+}
+
+.btn-catalogo {
+    display: inline-block;
+    background-color: var(--colore-primario);
+    color: #FFFFFF;
+    padding: 14px 28px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(200, 16, 46, 0.2);
+    margin-top: 10px;
+}
+
+.btn-catalogo:hover {
+    background-color: var(--colore-secondario);
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(200, 16, 46, 0.3);
+    color: var(--testo-p);
 }
 
 .btn-modifica {

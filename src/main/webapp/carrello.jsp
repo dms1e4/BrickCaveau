@@ -19,8 +19,8 @@
             <c:when test="${empty sessionScope.carrello or empty sessionScope.carrello.elementi}">
                 <div>
                     <p>Il tuo carrello è vuoto. Tonnellate di mattoncini ti aspettano!</p>
-                    <a href="${pageContext.request.contextPath}/catalogoServlet" class="btn-primario">Torna al Catalogo</a>
-                </div>
+                    	<a href="${pageContext.request.contextPath}/catalogoServlet" class="btn-catalogo">Torna al Catalogo</a>
+                    </div>
             </c:when>
             
             <c:otherwise>

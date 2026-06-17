@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Wishlist - BrickCaveau</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/wishlist.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/catalogo.css">
 </head>
 <body>
@@ -38,11 +38,15 @@
                             <p class="prezzo">€ ${set.prezzo}</p>
                             
                             <div class="azioni-prodotto">
-                                <a href="${pageContext.request.contextPath}/ProdottoServlet?id=${set.codiceSet}" class="btn-secondario">Dettagli</a>
+                                <a href="${pageContext.request.contextPath}/ProdottoServlet?id=${set.codiceSet}" class="btn-secondario">
+                                <img src="${pageContext.request.contextPath}/images/icone/dettagli.png" alt="Dettagli Prodotto" class="icona-carrello dettagli">
+                                Dettagli</a>
                                 <form action="${pageContext.request.contextPath}/CarrelloServlet" method="POST">
                                     <input type="hidden" name="azione" value="aggiungi">
                                     <input type="hidden" name="id" value="${set.codiceSet}">
-                                    <button type="submit" class="btn-primario">🛒</button>
+                                    <button type="submit" class="btn-primario">
+                                    	<img src="${pageContext.request.contextPath}/images/icone/aggiungi_carrello.png" alt="Aggiungi" class="icona-carrello">
+                                    </button>
                                 </form>
                             </div>
                         </div>
