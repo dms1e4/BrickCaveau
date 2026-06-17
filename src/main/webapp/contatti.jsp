@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Contatti - BrickCaveau</title>
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon1.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/contatti.css">
 </head>
 <body>

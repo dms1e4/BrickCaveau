@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title> Wishlist - BrickCaveau</title>
+    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon1.ico">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/wishlist.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/catalogo.css">
 </head>
