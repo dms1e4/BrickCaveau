@@ -52,7 +52,7 @@
                 <div class="info-riga"><strong>Nome:</strong> ${sessionScope.utente.nome}</div>
                 <div class="info-riga"><strong>Cognome:</strong> ${sessionScope.utente.cognome}</div>
                 <div class="info-riga"><strong>Email:</strong> ${sessionScope.utente.email}</div>
-                <%-- campi futuri: indirizzo ecc. --%>
+                <div class="info-riga"><strong>Telefono:</strong> ${sessionScope.utente.telefono}</div>
                 
                 <h2>I tuoi Metodi di Pagamento</h2>
                 <c:choose>
