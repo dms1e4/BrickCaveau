@@ -14,7 +14,7 @@
     <main class="dashboard-container">
         <div class="dashboard-header">
             <h1>Pannello di Controllo</h1>
-            <p>Benvenuto nel caveau di amministrazione, ${sessionScope.utente.nome}.</p>
+            <p>Benvenuto nel caveau di amministrazione, <strong>${sessionScope.utente.nome}.</strong></p>
         </div>
 
         <%-- feedback positivo: operazione completata --%>
@@ -29,7 +29,7 @@
             <section class="admin-section">
                 <div class="section-title-bar">
                     <h2>Gestione Catalogo</h2>
-                    <a href="${pageContext.request.contextPath}/admin/inserisciProdotto.jsp" class="btn-primario">+ Nuovo Set</a>
+                    <a href="${pageContext.request.contextPath}/admin/formProdotto.jsp" class="btn-primario">+ Nuovo Set</a>
                 </div>
                 
                 <div class="table-responsive">

@@ -75,28 +75,6 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
     }
   }
 
-  @Override
-    public void doUpdate(SetLegoBean bean) throws SQLException {
-        String query = "UPDATE Set_Lego SET Nome = ?, Anno_Uscita = ?, Anno_Ritiro = ?, N_Pezzi = ?, Descrizione = ?, Prezzo = ?, IVA = ?, Tema = ?, Quantita_Magazzino = ? WHERE Codice_Set = ?";
-        
-        try (Connection con = ds.getConnection();
-             PreparedStatement ps = con.prepareStatement(query)) {
-            
-            ps.setString(1, bean.getNome());
-            ps.setInt(2, bean.getAnnoUscita());
-            ps.setObject(3, bean.getAnnoRitiro());
-            ps.setInt(4, bean.getnPezzi());
-            ps.setString(5, bean.getDescrizione());
-            ps.setDouble(6, bean.getPrezzo());
-            ps.setDouble(7, bean.getIva());
-            ps.setString(8, bean.getTema());
-            ps.setInt(9, bean.getQuantitaMagazzino());
-            ps.setInt(10, bean.getCodiceSet());
-            
-            ps.executeUpdate();
-        }
-    }
-
     @Override
     public boolean doDelete(Integer codiceSet) throws SQLException {
         String query = "DELETE FROM Set_Lego WHERE Codice_Set = ?";
@@ -220,8 +198,33 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
         }
         return list;
     }
+    
+    public void doUpdate(SetLegoBean set, int codiceOriginale) throws SQLException {
+    	String query = "UPDATE Set_Lego SET Codice_Set = ?, Nome = ?, Descrizione = ?, Tema = ?, Prezzo = ?, N_Pezzi = ?, Anno_Uscita = ?, Anno_Ritiro = ?, QuantitaMagazzino = ? WHERE Codice_Set = ?";
 
-
+    	try (Connection con = ds.getConnection();
+    	     PreparedStatement ps = con.prepareStatement(query)) {
+    	    
+    	    ps.setInt(1, set.getCodiceSet());
+    	    ps.setString(2, set.getNome());
+    	    ps.setString(3, set.getDescrizione());
+    	    ps.setString(4, set.getTema());
+    	    ps.setDouble(5, set.getPrezzo());
+    	    ps.setInt(6, set.getnPezzi());
+    	    ps.setInt(7, set.getAnnoUscita());
+    	    
+    	    if (set.getAnnoRitiro() == 0) {
+    	        ps.setNull(8, java.sql.Types.INTEGER);
+    	    } else {
+    	        ps.setInt(8, set.getAnnoRitiro());
+    	    }
+    	    
+    	    ps.setInt(9, set.getQuantitaMagazzino());
+    	    ps.setInt(10, codiceOriginale);
+    	    
+    	    ps.executeUpdate();
+    	}
+    }
 
 // set lego da esporre in home
 
@@ -241,4 +244,10 @@ public class SetLegoDAO implements DAOInterface<SetLegoBean, Integer> {
     }
     	return setCasuali;
     }
+
+   @Override
+   public void doUpdate(SetLegoBean item) throws SQLException {
+	// TODO Auto-generated method stub
+	
+   }
 }
