@@ -42,6 +42,10 @@ public class AdminFilter implements Filter {
         }
 
         if (isAuthorized) {
+        	// non salva in cache le pagine admin
+        	httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // per http 1.1
+            httpResponse.setHeader("Pragma", "no-cache"); // per http 1.0
+            httpResponse.setDateHeader("Expires", 0);
             
             chain.doFilter(request, response);
         } else {
