@@ -1,8 +1,8 @@
 package control;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
 import javax.naming.InitialContext;
@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import model.SetLego.SetLegoBean;
@@ -40,22 +41,30 @@ public class ProdottoServlet extends HttpServlet {
             throws ServletException, IOException {
         
         try {
-            // prendo id passato nell'url
             int idSet = Integer.parseInt(request.getParameter("id"));
             
             SetLegoDAO setDAO = new SetLegoDAO(ds);
-            
             SetLegoBean prodotto = setDAO.doRetrieveByKey(idSet);
             
-            // recupero tutte le recensioni associate al prodotto
             RecensioneDAO recensioneDAO = new RecensioneDAO(ds);
             List<RecensioneBean> recensioni = recensioneDAO.doRetrieveBySetLego(idSet);
+            // calcolo media voti
+            double media = recensioneDAO.getMediaVoti(idSet);
+            boolean haAcquistato = false;
             
-            // Metto il bean del prodotto e la lista delle recensioni nella request
+            HttpSession session = request.getSession(false);
+            if (session != null && session.getAttribute("utente") != null) {
+                model.Utente.UtenteBean utente = (model.Utente.UtenteBean) session.getAttribute("utente");
+                // verifico che l'utente loggato abbia effettivamente acquistato il set
+                haAcquistato = recensioneDAO.checkAcquisto(utente.getIdUtente(), idSet);
+            }
+            
             request.setAttribute("prodotto", prodotto);
             request.setAttribute("listaRecensioni", recensioni);
+            request.setAttribute("mediaVoti", media);
+            request.setAttribute("numeroRecensioni", recensioni.size());
+            request.setAttribute("utenteHaAcquistato", haAcquistato);
             
-            // Mando alla pagina JSP corretta
             RequestDispatcher dispatcher = request.getRequestDispatcher("/prodotto.jsp");
             dispatcher.forward(request, response);
             
@@ -63,11 +72,5 @@ public class ProdottoServlet extends HttpServlet {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/errori/500.jsp");
         }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        doGet(request, response);
     }
 }

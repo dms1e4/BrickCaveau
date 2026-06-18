@@ -1,20 +1,20 @@
 package model.Recensione;
 
-import java.io.Serializable;
 import java.sql.Date;
 
-public class RecensioneBean implements Serializable {
-    private static final long serialVersionUID = 1L;
-
+public class RecensioneBean {
     private int utenteId;
     private int codiceSet;
-    private int rating;
+    private int rating; // Da 1 a 5
     private String testo;
     private Date dataRecensione;
-    private String nomeUtente;
-    private String cognomeUtente;
+    
+    // campo extra per JSP: nome dell'utente che ha scritto la recensione
+    private String nomeUtente; 
+
 
     public RecensioneBean() {}
+
 
     public int getUtenteId() { return utenteId; }
     public void setUtenteId(int utenteId) { this.utenteId = utenteId; }
@@ -33,7 +33,4 @@ public class RecensioneBean implements Serializable {
 
     public String getNomeUtente() { return nomeUtente; }
     public void setNomeUtente(String nomeUtente) { this.nomeUtente = nomeUtente; }
-
-    public String getCognomeUtente() { return cognomeUtente; }
-    public void setCognomeUtente(String cognomeUtente) { this.cognomeUtente = cognomeUtente; }
 }

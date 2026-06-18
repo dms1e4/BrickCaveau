@@ -15,6 +15,18 @@
     <jsp:include page="/fragments/header.jsp" />
 
     <main class="prodotto-container">
+        <%-- gestione dell'errore prodotto dalla servlet recensione --%>
+        
+        <c:if test="${param.success == 'recensione_inviata'}">
+            <div class="msg-success">
+                Grazie! La tua recensione è stata pubblicata con successo.
+            </div>
+        </c:if>
+        <c:if test="${param.error == 'dati_non_validi'}">
+            <div class="msg-errore">
+                Assicurati di inserire un voto valido (1-5) e di non lasciare il testo vuoto.
+            </div>
+        </c:if>
         
         <c:choose>
             <c:when test="${not empty prodotto}">
@@ -37,6 +49,20 @@
 
                     <div class="prodotto-info">
                         <h2>${prodotto.nome}</h2>
+                        
+                        <%-- media delle recensioni --%>
+                        
+                        <div class="rating-medio">
+                            <c:choose>
+                                <c:when test="${numeroRecensioni > 0}">
+                                    ⭐ ${mediaVoti} / 5 <span>(${numeroRecensioni} recensioni)</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span>Ancora nessuna recensione. Sii il primo!</span>
+                                </c:otherwise>
+                            </c:choose>
+                            
+                        </div>
                         <div class="tema">Set N°: ${prodotto.codiceSet} | Tema: ${prodotto.tema}</div>
                         
                         <div class="prezzo">€ ${prodotto.prezzo}</div>
@@ -76,23 +102,98 @@
 
                     </div>
                 </div>
-
+				
+				
                 <div class="recensioni-container">
                     <h3>Recensioni dei clienti</h3>
-                    	<c:forEach var="rec" items="${listaRecensioni}">
-						    <div class="recensione">
-						        <p>Voto: ${rec.rating}</p>
-						        <p>Commento: ${rec.testo}</p>
-						        <p>Utente: ${rec.nomeUtente}</p>
-						    </div>
-						</c:forEach>
+                    
+                    <%-- form di inserimento recensione solo per utenti loggati --%>
+                    
+                    <c:choose>
+                        <%-- utente loggato che HA acquistato --%>
+                        <c:when test="${not empty sessionScope.utente && utenteHaAcquistato}">
+                            <div class="scrivi-recensione" style="background: #F8FAFC; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #E2E8F0;">
+                                <h4>Scrivi la tua recensione </h4>
+                                <form action="${pageContext.request.contextPath}/AggiungiRecensioneServlet" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                                    <input type="hidden" name="codiceSet" value="${prodotto.codiceSet}">
+                                    
+                                    <div>
+                                        <label for="rating" style="font-weight: bold; display: block; margin-bottom: 5px;">Voto:</label>
+                                        <select name="rating" id="rating" required style="padding: 8px; border-radius: 4px; border: 1px solid #CBD5E1;">
+                                            <option value="5">⭐⭐⭐⭐⭐ (Eccezionale)</option>
+                                            <option value="4">⭐⭐⭐⭐ (Molto Buono)</option>
+                                            <option value="3">⭐⭐⭐ (Nella media)</option>
+                                            <option value="2">⭐⭐ (Deludente)</option>
+                                            <option value="1">⭐ (Pessimo)</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="testo" style="font-weight: bold; display: block; margin-bottom: 5px;">Commento (max 750 caratteri):</label>
+                                        <textarea name="testo" id="testo" rows="4" required maxlength="750" placeholder="Cosa ne pensi di questo set?" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #CBD5E1; font-family: inherit; resize: vertical;"></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" class="btn-primario" style="align-self: flex-start;">Pubblica Recensione</button>
+                                </form>
+                            </div>
+                        </c:when>
+                        
+                        <%-- utente loggato ma NON ha acquistato --%>
+                        <c:when test="${not empty sessionScope.utente && !utenteHaAcquistato}">
+                            <div style="background: #F8FAFC; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center; border: 1px dashed #CBD5E1; color: var(--testo-s);">
+                                <p style="margin: 0;"><strong>Recensione riservata:</strong> Solo i clienti che hanno acquistato questo set LEGO nel nostro negozio possono lasciare una recensione.</p>
+                            </div>
+                        </c:when>
+                        
+                        <%-- utente non loggato --%>
+                        <c:otherwise>
+                            <div style="background: #F8FAFC; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center; border: 1px dashed #CBD5E1;">
+                                <p style="margin: 0;">Vuoi condividere la tua opinione? <a href="${pageContext.request.contextPath}/login.jsp" style="color: var(--colore-primario); font-weight: bold;">Accedi</a> per verificare il tuo acquisto e scrivere una recensione.</p>
+                            </div>
+                        </c:otherwise>
+                    </c:choose>
+                    
+                    <%-- recensioni già esistenti --%>
+                    
+                    	<div class="lista-recensioni">
+                        <c:choose>
+                            <c:when test="${empty listaRecensioni}">
+                                <p>Nessuno ha ancora recensito questo set.</p>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="rec" items="${listaRecensioni}">
+                                    <div class="recensione-card">
+                                        <div class="rec-header">
+                                            <strong>${rec.nomeUtente}</strong>
+                                            
+                                            <%-- stampa del numero di stelle --%>
+                                            <span>
+                                                <c:forEach begin="1" end="${rec.rating}">★</c:forEach>
+                                                
+                                                <%-- stelle grigie rimanenti --%>
+                                                
+                                                <span><c:forEach begin="${rec.rating + 1}" end="5">★</c:forEach></span>
+                                            </span>
+                                            
+                                            <span>${rec.dataRecensione}</span>
+                                        </div>
+                                        <p>${rec.testo}</p>
+                                    </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+
                 </div>
 
             </c:when>
             
             <c:otherwise>
-                <h3>Prodotto non trovato.</h3>
-                <p>Il set richiesto non è presente nel Caveau.</p>
+                <div style="text-align: center; padding: 50px;">
+                    <h3>Prodotto non trovato.</h3>
+                    <p>Il set richiesto non è presente nel Caveau.</p>
+                    <a href="${pageContext.request.contextPath}/catalogo.jsp" class="btn-primario">Torna al catalogo</a>
+                </div>
             </c:otherwise>
         </c:choose>
 
