@@ -78,24 +78,29 @@
                     <h2>Storico Ordini Clienti</h2>
                 </div>
                 
-                <form action="${pageContext.request.contextPath}/admin/FiltraOrdiniServlet" method="GET" class="form-filtri">
-                    <div class="filtro-gruppo">
-                        <label for="dataDa">Da data:</label>
-                        <input type="date" name="dataDa" id="dataDa">
+                <form id="formFiltriOrdini" data-context="${pageContext.request.contextPath}" class="form-filtri" style="margin-bottom: 25px; display: flex; gap: 15px; align-items: flex-end; flex-wrap: wrap; background: #F8F9FA; padding: 15px; border-radius: 8px; border: 1px solid #E2E8F0;">
+                
+                    <div class="filtro-gruppo" style="margin-bottom: 0;">
+                        <label for="dataInizio" style="font-weight:bold; font-size:0.9rem;">Da data:</label>
+                        <input type="date" id="dataInizio" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
-                    <div class="filtro-gruppo">
-                        <label for="dataA">A data:</label>
-                        <input type="date" name="dataA" id="dataA">
+                    
+                    <div class="filtro-gruppo" style="margin-bottom: 0;">
+                        <label for="dataFine" style="font-weight:bold; font-size:0.9rem;">A data:</label>
+                        <input type="date" id="dataFine" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
-                    <div class="filtro-gruppo">
-                        <label for="idUtente">Cliente (ID):</label>
-                        <input type="text" name="idUtente" id="idUtente" placeholder="1">
+
+                    <div class="filtro-gruppo" style="margin-bottom: 0;">
+                        <label for="utenteId" style="font-weight:bold; font-size:0.9rem;">ID Cliente (opzionale):</label>
+                        <input type="number" id="utenteId" placeholder="Es. 1" min="1" style="padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
                     </div>
-                    <div class="filtro-gruppo btn-filtro-container">
-                        <button type="submit" class="btn-azione btn-secondario">Applica Filtri</button>
+
+                    <div style="display: flex; gap: 10px;">
+                        <button type="submit" class="btn-azione btn-primario">🔍 Filtra</button>
+                        <button type="button" id="btnResetOrdini" class="btn-azione btn-secondario" style="background-color: #64748B; color: white;">✖ Reset</button>
                     </div>
                 </form>
-
+                
                 <div class="table-responsive">
                     <table class="admin-table">
                         <thead>
@@ -107,26 +112,8 @@
                                 <th>Azioni</th>
                             </tr>
                         </thead>
-                        <tbody>
-						    <%-- lista degli ordini --%>
-						    <c:forEach var="ordine" items="${listaOrdiniAdmin}">
-						        <tr>
-						            <td>#${ordine.id}</td>
-						            <td>${ordine.dataOrdine}</td>
-						            <td>${ordine.utenteId}</td>
-						            <td>€ ${ordine.totale}</td>
-						            <td>
-						                <a href="${pageContext.request.contextPath}/admin/DettaglioOrdineAdminServlet?id=${ordine.id}" class="btn-azione btn-modifica">Vedi Dettagli</a>
-						            </td>
-						        </tr>
-						    </c:forEach>
-						    <%-- fallback --%>
-						    <c:if test="${empty listaOrdiniAdmin}">
-						        <tr>
-						            <td class="non-trovato" colspan="5">Nessun ordine trovato con i filtri attuali.</td>
-						        </tr>
-						    </c:if>
-						</tbody>
+                        <tbody id="tabellaOrdiniBody">
+                            </tbody>
                     </table>
                 </div>
             </section>
@@ -135,5 +122,6 @@
     </main>
 
     <jsp:include page="/fragments/footer.jsp" />
+    <script src="${pageContext.request.contextPath}/js/dashboard.js"></script>
 </body>
 </html>
