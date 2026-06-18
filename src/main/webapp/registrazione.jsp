@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrazione - BrickCaveau</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/registrazione.css">
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon1.ico">
