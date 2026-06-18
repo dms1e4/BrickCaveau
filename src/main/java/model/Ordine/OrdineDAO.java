@@ -239,4 +239,24 @@ public class OrdineDAO {
         bean.setStatoSpedizione(rs.getString("Stato_Spedizione"));
         return bean;
     }
+
+    public Map<String, String> doRetrieveClienteInfoByOrdine(int idOrdine) throws SQLException {
+        Map<String, String> clienteInfo = new HashMap<>();
+        String query = "SELECT u.Nome, u.Cognome, u.Email FROM Ordine o " +
+                       "JOIN Utente u ON o.Utente_ID = u.ID_Utente WHERE o.ID = ?";
+                       
+        try (Connection con = ds.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, idOrdine);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    clienteInfo.put("nome", rs.getString("Nome"));
+                    clienteInfo.put("cognome", rs.getString("Cognome"));
+                    clienteInfo.put("email", rs.getString("Email"));
+                }
+            }
+        }
+        return clienteInfo;
+    }
+    
 }
