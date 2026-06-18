@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // --- REGEX FONDAMENTALI ---
     const regexLettere = /^[a-zA-ZÀ-ÿ\s']{2,50}$/; 
     const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Obbliga la presenza di @ e dominio
-    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/; // Minimo 8 caratteri, almeno 1 lettera maiuscola, 1 numero, 1 carattere speciale
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]{8,}$/; // Minimo 8 caratteri, almeno 1 lettera maiuscola, 1 numero, 1 carattere speciale
     const regexTelefono = /^[0-9]{9,10}$/; // 9-10 cifre senza prefisso
     
     /*chiamata Fetch API*/
