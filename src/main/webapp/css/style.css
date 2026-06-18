@@ -206,7 +206,7 @@ header {
     transform: translateY(-5px);
 }
 
-.card-carosello img {
+.card-carosello > img {
     width: 100%;
     height: auto;
     max-height: 200px;
@@ -231,7 +231,11 @@ header {
 }
 
 .card-carosello .btn-secondario {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    
     width: 100%;
     padding: 10px 0;
     background-color: var(--colore-secondario);
@@ -244,6 +248,13 @@ header {
 
 .card-carosello .btn-secondario:hover {
     background-color: #D69500;
+}
+
+.icona-btn {
+    height: 25px;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 /* FOOTER */

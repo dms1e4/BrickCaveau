@@ -37,7 +37,9 @@
 	                <p class="prezzo">€ ${set.prezzo}</p>
 	                
 	                <div class="azioni-prodotto">
-	                    <a href="${pageContext.request.contextPath}/ProdottoServlet?id=${set.codiceSet}" class="btn-secondario">Dettagli</a>
+	                    <a href="${pageContext.request.contextPath}/ProdottoServlet?id=${set.codiceSet}" class="btn-secondario">
+	                    <img src="${pageContext.request.contextPath}/images/icone/dettagli.png" class="icona-btn">
+	                    Dettagli</a>
 	                </div>
 	            </div>
 	        </c:forEach>
