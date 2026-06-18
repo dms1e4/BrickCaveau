@@ -30,7 +30,7 @@
             <section class="admin-section">
                 <div class="section-title-bar">
                     <h2>Gestione Catalogo</h2>
-                    <a href="${pageContext.request.contextPath}/admin/formProdotto.jsp" class="btn-primario">+ Nuovo Set</a>
+                    <a href="${pageContext.request.contextPath}/admin/formProdotto.jsp" class="btn-azione btn-aggiungi">+ Nuovo Set</a>
                 </div>
                 
                 <div class="table-responsive">

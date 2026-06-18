@@ -89,7 +89,7 @@
 }
 
 .btn-modifica {
-    background-color: #3B82F6; /* Blu */
+    background-color: #3B82F6; 
     color: white;
 }
 
@@ -98,8 +98,17 @@
 }
 
 .btn-elimina {
-    background-color: #DC2626; /* Rosso intenso */
+    background-color: #DC2626;
     color: white;
+}
+
+.btn-aggiungi {
+	background-color: var(--successo);
+	color: white;
+}
+
+.btn-aggiungi:hover {
+	background-color: #38783F; /* poco più scuro di successo */
 }
 
 .btn-elimina:hover { 
