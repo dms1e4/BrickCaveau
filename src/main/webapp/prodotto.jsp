@@ -112,14 +112,14 @@
                     <c:choose>
                         <%-- utente loggato che HA acquistato --%>
                         <c:when test="${not empty sessionScope.utente && utenteHaAcquistato}">
-                            <div class="scrivi-recensione" style="background: #F8FAFC; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px solid #E2E8F0;">
+                            <div class="scrivi-recensione">
                                 <h4>Scrivi la tua recensione </h4>
-                                <form action="${pageContext.request.contextPath}/AggiungiRecensioneServlet" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                                <form action="${pageContext.request.contextPath}/AggiungiRecensioneServlet" method="POST">
                                     <input type="hidden" name="codiceSet" value="${prodotto.codiceSet}">
                                     
                                     <div>
-                                        <label for="rating" style="font-weight: bold; display: block; margin-bottom: 5px;">Voto:</label>
-                                        <select name="rating" id="rating" required style="padding: 8px; border-radius: 4px; border: 1px solid #CBD5E1;">
+                                        <label for="rating">Voto:</label>
+                                        <select name="rating" id="rating" required>
                                             <option value="5">⭐⭐⭐⭐⭐ (Eccezionale)</option>
                                             <option value="4">⭐⭐⭐⭐ (Molto Buono)</option>
                                             <option value="3">⭐⭐⭐ (Nella media)</option>
@@ -129,26 +129,26 @@
                                     </div>
                                     
                                     <div>
-                                        <label for="testo" style="font-weight: bold; display: block; margin-bottom: 5px;">Commento (max 750 caratteri):</label>
-                                        <textarea name="testo" id="testo" rows="4" required maxlength="750" placeholder="Cosa ne pensi di questo set?" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #CBD5E1; font-family: inherit; resize: vertical;"></textarea>
+                                        <label for="testo">Commento (max 750 caratteri):</label>
+                                        <textarea name="testo" id="testo" rows="4" required maxlength="750" placeholder="Cosa ne pensi di questo set?"></textarea>
                                     </div>
                                     
-                                    <button type="submit" class="btn-primario" style="align-self: flex-start;">Pubblica Recensione</button>
+                                    <button type="submit" class="btn-primario">Pubblica Recensione</button>
                                 </form>
                             </div>
                         </c:when>
                         
                         <%-- utente loggato ma NON ha acquistato --%>
                         <c:when test="${not empty sessionScope.utente && !utenteHaAcquistato}">
-                            <div style="background: #F8FAFC; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center; border: 1px dashed #CBD5E1; color: var(--testo-s);">
-                                <p style="margin: 0;"><strong>Recensione riservata:</strong> Solo i clienti che hanno acquistato questo set LEGO nel nostro negozio possono lasciare una recensione.</p>
+                            <div>
+                                <p><strong>Recensione riservata:</strong> Solo i clienti che hanno acquistato questo set LEGO nel nostro negozio possono lasciare una recensione.</p>
                             </div>
                         </c:when>
                         
                         <%-- utente non loggato --%>
                         <c:otherwise>
-                            <div style="background: #F8FAFC; padding: 20px; border-radius: 8px; margin-bottom: 30px; text-align: center; border: 1px dashed #CBD5E1;">
-                                <p style="margin: 0;">Vuoi condividere la tua opinione? <a href="${pageContext.request.contextPath}/login.jsp" style="color: var(--colore-primario); font-weight: bold;">Accedi</a> per verificare il tuo acquisto e scrivere una recensione.</p>
+                            <div>
+                                <p>Vuoi condividere la tua opinione? <a href="${pageContext.request.contextPath}/login.jsp">Accedi</a> per verificare il tuo acquisto e scrivere una recensione.</p>
                             </div>
                         </c:otherwise>
                     </c:choose>
@@ -189,7 +189,7 @@
             </c:when>
             
             <c:otherwise>
-                <div style="text-align: center; padding: 50px;">
+                <div>
                     <h3>Prodotto non trovato.</h3>
                     <p>Il set richiesto non è presente nel Caveau.</p>
                     <a href="${pageContext.request.contextPath}/catalogo.jsp" class="btn-primario">Torna al catalogo</a>

@@ -1,9 +1,7 @@
 @charset "UTF-8";
 @import "style.css";
 
-/* =========================================
-   PAGINA SINGOLO PRODOTTO
-   ========================================= */
+/* SINGOLO PRODOTTO */
 
 .prodotto-container {
     background-color: white;
@@ -11,8 +9,9 @@
     border-radius: 8px;
     padding: 30px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    margin-top: 20px 10px auto 0 10px auto;
-    max-width: 95%;
+    margin: 40px auto;
+    max-width: 1200px;
+    box-sizing: border-box;
 }
 
 .prodotto-grid {
@@ -27,7 +26,7 @@
     }
 }
 
-/* Colonna Immagini */
+/* CAROSELLO IMMAGINI */
 .prodotto-galleria {
     display: flex;
     flex-direction: column;
@@ -42,6 +41,7 @@
     border-radius: 8px;
     margin-bottom: 20px;
     object-fit: contain;
+    mix-blend-mode: multiply;
 }
 
 .miniature-container {
@@ -61,18 +61,19 @@
 }
 
 .miniature-container img:hover {
-    border: 2px solid #C8102E;
+    border: 2px solid var(--colore-primario);
 }
 
-/* Colonna Info */
+/* INFO */
+
 .prodotto-info h2 {
-    color: #0F172A;
+    color: var(--testo-p);
     font-size: 2em;
     margin-bottom: 5px;
 }
 
 .prodotto-info .tema {
-    color: #64748B;
+    color: var(--testo-s);
     font-size: 1.1em;
     margin-bottom: 20px;
     border-bottom: 1px solid #E2E8F0;
@@ -82,21 +83,23 @@
 .prodotto-info .prezzo {
     font-size: 2.5em;
     font-weight: bold;
-    color: #C8102E;
+    color: var(--colore-primario);
     margin-bottom: 20px;
 }
 
 .specifiche {
     margin: 20px 0;
     line-height: 1.8;
+    color: var(--testo-p);
 }
 
-/* Form Carrello */
+/* CARRELLO */
+
 .form-carrello {
-    background-color: #F8F9FA;
+    background-color: var(-rgb(242, 169, 0)-p);
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #F2A900;
+    border-left: 4px solid var(--colore-secondario);
     display: flex;
     align-items: center;
     gap: 15px;
@@ -109,26 +112,225 @@
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 4px;
+    color: var(--testo-p);
+}
+
+.form-carrello input[type="number"]:focus {
+    border-color: var(--colore-primario);
+    outline: none;
 }
 
 .btn-primario {
-    background-color: #C8102E;
+    background-color: var(--colore-primario);
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
 .btn-primario:hover {
-    background-color: #A00D24;
+    background-color: #A00D24; /* rosso più scuro */
+    transform: scale(1.1);
+    box-shadow: 0 4px 6px rgba(200, 16, 46, 0.2);
 }
 
-/* Recensioni */
+/* RECENSIONI */
+
 .recensioni-container {
     margin-top: 50px;
     padding-top: 30px;
     border-top: 1px solid #E2E8F0;
+}
+
+.recensioni-container h3 {
+    color: var(--testo-p);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.lista-recensioni {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.recensione-card {
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 20px 25px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: box-shadow 0.2s ease;
+}
+
+.recensione-card:hover {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.rec-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #E2E8F0;
+    padding-bottom: 12px;
+}
+
+.rec-header strong {
+    font-size: 1.1rem;
+    color: var(--testo-p);
+}
+
+.recensione-card p {
+    margin: 0;
+    color: var(--testo-p);
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* STELLE COLORATE */
+
+.rec-header > span:nth-child(2) {
+    color: var(--colore-secondario);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* Stelle vuote in grigio chiaro */
+.rec-header > span:nth-child(2) span {
+    color: #E2E8F0;
+}
+
+.rec-header span:last-child {
+    margin-left: auto;
+    color: var(--testo-s);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* INSERIMENTO RECENSIONE */
+
+.scrivi-recensione {
+    background-color: var(--sfondo-p);
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    margin-bottom: 40px;
+}
+
+.scrivi-recensione h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--colore-primario);
+    font-size: 1.2rem;
+}
+
+.scrivi-recensione form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.scrivi-recensione label {
+    font-weight: 600;
+    color: var(--testo-p);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.scrivi-recensione select,
+.scrivi-recensione textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--testo-p);
+    background-color: #FFFFFF;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.scrivi-recensione textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.scrivi-recensione select:focus,
+.scrivi-recensione textarea:focus {
+    border-color: var(--colore-primario);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+.scrivi-recensione .btn-primario {
+    align-self: flex-start;
+}
+
+/* RATING SOTTO AL NOME DEL PRODOTTO */
+
+.rating-medio {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--testo-p);
+    margin-bottom: 15px;
+}
+
+.rating-medio span {
+    font-size: 0.95rem;
+    color: var(--testo-s);
+    font-weight: normal;
+}
+
+/* ERRORE - SUCCESSO */
+
+.msg-success, .msg-errore {
+    padding: 15px;
+    margin-bottom: 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.msg-success {
+    background-color: rgba(22, 163, 74, 0.1); /* verde chiaro */
+    color: var(--successo);
+    border: 1px solid var(--successo);
+}
+
+.msg-errore {
+    background-color: rgba(220, 38, 38, 0.1); /* rosso più chiaro */
+    color: var(--errore);
+    border: 1px solid var(--errore);
+}
+
+@media (max-width: 768px) {
+    .prodotto-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .prodotto-info h2 {
+        font-size: 1.8rem;
+    }
+    
+    .form-carrello {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .scrivi-recensione .btn-primario {
+        align-self: stretch;
+    }
+    
+    .rec-header span:last-child {
+        margin-left: 0;
+        width: 100%;
+    }
 }
