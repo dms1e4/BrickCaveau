@@ -12,7 +12,7 @@ public class SetLegoBean implements Serializable {
   private int nPezzi;
   private String descrizione;
   private double prezzo;
-  private double iva;
+  private double iva = 22.00;
   private String tema;
   private int quantitaMagazzino;
 

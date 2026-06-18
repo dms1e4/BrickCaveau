@@ -19,7 +19,6 @@
         <div class="dashboard-header">
             <h1>${not empty setLego ? 'Modifica Set LEGO' : 'Aggiungi Nuovo Set'}</h1>
             
-            <%-- Soluzione pulita e priva di errori per il sottotitolo --%>
             <c:choose>
                 <c:when test="${not empty setLego}">
                     <p>Stai modificando il set #${setLego.codiceSet}</p>
@@ -40,17 +39,21 @@
                 <c:if test="${empty setLego}">
                     <input type="hidden" name="azione" value="aggiungi">
                 </c:if>
-
-                <div>
-                    <div class="filtro-gruppo">
+                <div class="filtro-gruppo">
                         <label for="codiceSet">Codice Set*</label>
-                        <input type="number" id="codiceSet" name="codiceSet" value="${setLego.codiceSet}" required ${not empty setLego ? 'readonly style="background-color: #f1f5f9; cursor: not-allowed;" title="Il codice set non può essere modificato"' : ''}>
+                        <c:choose>
+                            <c:when test="${not empty setLego}">
+                                <input type="number" id="codiceSet" name="codiceSet" value="${setLego.codiceSet}" required readonly title="Il codice set non può essere modificato">
+                            </c:when>
+                            <c:otherwise>
+                                <input type="number" id="codiceSet" name="codiceSet" required>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                     <div class="filtro-gruppo">
                         <label for="nome">Nome del Set*</label>
                         <input type="text" id="nome" name="nome" value="${setLego.nome}" required maxlength="100">
                     </div>
-                </div>
 
                 <div>
                     <div class="filtro-gruppo">
@@ -61,6 +64,12 @@
                         <label for="prezzo">Prezzo (€)*</label>
                         <input type="number" id="prezzo" name="prezzo" value="${setLego.prezzo}" step="0.01" min="0" required>
                     </div>
+                    
+                    <div class="filtro-gruppo">
+                        <label for="iva">IVA (%)</label>
+                        <input type="number" id="iva" name="iva" value="${not empty setLego ? setLego.iva : '22.00'}" step="0.01" min="0">
+                    </div>
+                    
                     <div class="filtro-gruppo">
                         <label for="nPezzi">Numero Pezzi*</label>
                         <input type="number" id="nPezzi" name="nPezzi" value="${setLego.nPezzi}" min="1" required>

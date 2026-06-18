@@ -1,8 +1,8 @@
 package control.admin;
 
 import java.io.File;
+
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -11,14 +11,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.sql.DataSource;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.sql.SQLException;
 
 import model.SetLego.SetLegoBean;
 import model.SetLego.SetLegoDAO;
+import model.Utente.UtenteBean;
 
 @WebServlet("/admin/SalvaProdottoServlet")
 // per salvare le immagini dei set
@@ -46,7 +49,22 @@ public class SalvaProdottoServlet extends HttpServlet {
             throws ServletException, IOException {
         
         
-        // controllare che utente sia admin
+        // controllo che l'utente sia loggato e sia admin
+    	
+    	HttpSession session = request.getSession(false);
+        
+        if (session == null || session.getAttribute("utente") == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
+
+        UtenteBean utente = (model.Utente.UtenteBean) session.getAttribute("utente");
+        
+        if (!utente.is_Admin()) { 
+            response.sendRedirect(request.getContextPath() + "/403.jsp");
+            return;
+        }
         
         try {
             String azione = request.getParameter("azione");
@@ -68,6 +86,13 @@ public class SalvaProdottoServlet extends HttpServlet {
                 set.setAnnoRitiro(0); // indica che è ancora in produzione
             }
             
+            String ivaStr = request.getParameter("iva");
+            if (ivaStr != null && !ivaStr.trim().isEmpty()) {
+                set.setIva(Double.parseDouble(ivaStr));
+            } else {
+                set.setIva(22.00);
+            }
+            
             set.setQuantitaMagazzino(Integer.parseInt(request.getParameter("quantita")));
 
             // salvataggio nel DB
@@ -84,7 +109,6 @@ public class SalvaProdottoServlet extends HttpServlet {
             Part filePart = request.getPart("immagine");
             
             if (filePart != null && filePart.getSize() > 0) {
-                // Percorso di destinazione nel server
                 String uploadPath = getServletContext().getRealPath("") + File.separator + "images" + File.separator + "Set";
                 File uploadDir = new File(uploadPath);
                 
@@ -92,16 +116,23 @@ public class SalvaProdottoServlet extends HttpServlet {
                     uploadDir.mkdirs();
                 }
                 
-                // Nome del file: es. "4476_1.jpg"
+                // nome del file + _1
                 String fileName = set.getCodiceSet() + "_1.jpg";
                 File fileToSave = new File(uploadDir, fileName);
                 
-                // IL METODO INFALLIBILE: Usiamo InputStream invece di filePart.write()
                 try (InputStream input = filePart.getInputStream()) {
                     Files.copy(input, fileToSave.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 }
-
+            }
             response.sendRedirect(request.getContextPath() + "/admin/dashboardServlet?success=operazione_completata");
+        } catch (SQLException e) {
+            // 1062: codice per chiave primaria duplicata
+            if (e.getErrorCode() == 1062) {
+                // quindi rimandiamo l'admin a una pagina con l'errore
+                response.sendRedirect(request.getContextPath() + "/admin/DashboardServlet?error=codice_duplicato");
+            } else {
+                e.printStackTrace();
+                response.sendRedirect(request.getContextPath() + "/errori/500.jsp");
             }
         } catch (Exception e) {
             e.printStackTrace();
