@@ -145,3 +145,44 @@
 .login-container form > p a:hover {
     color: var(--colore-secondario);
 }
+
+/* MEDIA QUERY TABLET (fino a 768px) */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%; /* Usa la percentuale invece dei pixel fissi */
+        padding: 20px; /* Riduciamo lo spazio interno per far respirare il form */
+        margin: 30px auto;
+    }
+
+    .login-container h2 {
+        font-size: 1.5rem; /* Titolo leggermente più piccolo */
+        margin-bottom: 20px;
+    }
+}
+
+/* MEDIA QUERY SMARTPHONE (fino a 480px) */
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%; /* Sfruttiamo quasi tutto lo schermo del telefono */
+        padding: 15px;
+        margin: 15px auto;
+        border: none; /* Rimuoviamo il bordo su schermi piccolissimi, tanto c'è l'ombra */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Ombra più delicata */
+    }
+
+    .login-container h2 {
+        font-size: 1.3rem; 
+    }
+
+    .login-container form input[type="email"],
+    .login-container form input[type="password"],
+    .login-container form input[type="text"] {
+        padding: 8px 12px; /* Input leggermente più compatti */
+        font-size: 0.95rem;
+    }
+
+    .btn-primario {
+        padding: 10px;
+        font-size: 1rem;
+    }
+}
