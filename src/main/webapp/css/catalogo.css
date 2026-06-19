@@ -381,7 +381,9 @@ input[type="range"] {
         flex-direction: column; 
     }
     
-    .btn-secondario, .azioni-prodotto form {
+    .btn-secondario, 
+    .azioni-prodotto form,
+    .azioni-prodotto form .btn-primario {
         width: 100%;
     }
 }
