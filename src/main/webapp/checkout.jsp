@@ -38,12 +38,12 @@
 									    	<input type="radio" name="idIndirizzo" value="${ind.id}" required>
 									    </c:otherwise>
 									</c:choose>
-                                    <div>
+                                    <span>
                                         <strong>${ind.via}, ${ind.nCivico}</strong><br>
                                         <span>
                                             ${ind.cap} ${ind.citta} (${ind.provincia})
                                         </span>
-                                    </div>
+                                    </span>
                                 </label>
                             </c:forEach>
                         </div>
@@ -62,9 +62,9 @@
 									        <input type="radio" name="idMetodo" value="${metodo.id}" required>
 									    </c:otherwise>
 									</c:choose>
-									<p>
+									<span>
                                         <strong>${metodo.tipo}</strong> terminante in <strong>**** ${metodo.ultime4Cifre}</strong>
-                                    </p>
+                                    </span>
                                 </label>
                             </c:forEach>
                         </div>
