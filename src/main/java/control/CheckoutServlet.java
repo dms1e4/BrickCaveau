@@ -91,6 +91,10 @@ public class CheckoutServlet extends HttpServlet {
             // redirect a messaggio di successo
             response.sendRedirect(request.getContextPath() + "/ProfiloServlet?success=ordine_completato");
 
+        } catch (RuntimeException e) {
+            String messaggioErrore = java.net.URLEncoder.encode(e.getMessage(), "UTF-8");
+            response.sendRedirect(request.getContextPath() + "/carrello.jsp?error=" + messaggioErrore);
+
         } catch (SQLException e) {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/errori/500.jsp");
