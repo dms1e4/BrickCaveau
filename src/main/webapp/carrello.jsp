@@ -80,7 +80,7 @@
                             <button type="submit" class="btn-svuota">Svuota Carrello</button>
                         </form>
                         
-                        <a href="${pageContext.request.contextPath}/CheckoutServlet" class="btn-checkout">Procedi al Checkout</a>
+                        <a href="${pageContext.request.contextPath}/PreCheckoutServlet" class="btn-checkout">Procedi al Checkout</a>
                     </div>
                 </div>
             </c:otherwise>

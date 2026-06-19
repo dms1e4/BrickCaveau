@@ -34,8 +34,8 @@ public class OrdineDAO {
                 psOrdine.setDate(1, ordine.getDataOrdine());
                 psOrdine.setDouble(2, carrello.getPrezzoTotaleComplessivo());
                 psOrdine.setInt(3, ordine.getUtenteId());
-                psOrdine.setObject(4, ordine.getIndirizzoId());
-                psOrdine.setObject(5, ordine.getMetodoPagamentoId());
+                psOrdine.setInt(4, ordine.getIndirizzoId());
+                psOrdine.setInt(5, ordine.getMetodoPagamentoId());
                 psOrdine.executeUpdate();
 
                 try (ResultSet rsKeys = psOrdine.getGeneratedKeys()) {

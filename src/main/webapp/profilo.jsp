@@ -45,6 +45,10 @@
 		<c:if test="${param.success == 'indirizzo_aggiunto'}">
 		    <div class="alert-successo">L'indirizzo è stato aggiunto correttamente.</div>
 		</c:if>
+		
+		<c:if test="${param.info == 'dati_mancanti'}">
+			<div class="alert-errore">Aggiungi un metodo di pagamento / indirizzo per procedere.</div>
+        </c:if>
         
         <div class="profilo-grid">
             <%-- dati personali --%>
@@ -61,9 +65,10 @@
                         <ul>
                             <c:forEach var="metodo" items="${listaMetodi}">
                                 <li>
+                                <div>
                                     <strong>${metodo.tipo}</strong> terminante in <strong>**** ${metodo.ultime4Cifre}</strong> 
                                     <br><span>Scadenza: ${metodo.scadenza}</span>
-                                    
+                                </div>
                                     <form action="${pageContext.request.contextPath}/RimuoviMetodoServlet" method="POST" 
 						              onsubmit="return confirm('Sei sicuro di voler rimuovere definitivamente questa carta?');">
 						            <input type="hidden" name="idMetodo" value="${metodo.id}">

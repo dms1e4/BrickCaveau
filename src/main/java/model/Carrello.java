@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;

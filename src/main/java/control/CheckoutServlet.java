@@ -36,7 +36,7 @@ public class CheckoutServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
         HttpSession session = request.getSession(false);
@@ -55,14 +55,31 @@ public class CheckoutServlet extends HttpServlet {
 
         UtenteBean utente = (UtenteBean) session.getAttribute("utente");
         System.out.println("ATTENZIONE - ID Utente in fase di checkout: " + utente.getIdUtente()); 
+        
+        String idIndirizzoStr = request.getParameter("idIndirizzo");
+        String idMetodoStr = request.getParameter("idMetodo");
 
+        // se l'utente salta il checkout (non abbiamo i parametri dichiarati sopra) lo mandiamo al precheckout
+        
+        if (idIndirizzoStr == null || idMetodoStr == null) {
+            response.sendRedirect(request.getContextPath() + "/PreCheckoutServlet");
+            return;
+        }
+        
         try {
+        	int idIndirizzo = Integer.parseInt(request.getParameter("idIndirizzo"));
+            int idMetodo = Integer.parseInt(request.getParameter("idMetodo"));
+        	
             OrdineDAO ordineDAO = new OrdineDAO(ds);
 
             OrdineBean nuovoOrdine = new OrdineBean();
             nuovoOrdine.setUtenteId(utente.getIdUtente());
             nuovoOrdine.setDataOrdine(Date.valueOf(LocalDate.now()));
             nuovoOrdine.setTotale(carrello.getPrezzoTotaleComplessivo());
+            nuovoOrdine.setIndirizzoId(idIndirizzo);
+            nuovoOrdine.setMetodoPagamentoId(idMetodo);
+          
+            nuovoOrdine.setStatoSpedizione("In lavorazione...");
             
             // salvataggio nel database
             ordineDAO.doCheckout(nuovoOrdine, carrello);
@@ -81,8 +98,8 @@ public class CheckoutServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        doGet(request, response);
+        doPost(request, response);
     }
 }
