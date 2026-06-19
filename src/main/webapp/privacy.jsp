@@ -51,7 +51,7 @@
         <p>Ai sensi del GDPR, hai il diritto in qualunque momento di:</p>
         <ul>
             <li><strong>Accedere</strong> ai tuoi dati personali e richiederne una copia.</li>
-            <li><strong>Rettificare</strong> dati inesatti o aggiornare quelli incompleti tramite la tua area personale.</li>
+            <li><strong>Rettificare</strong> dati inesatti o aggiornare quelli incompleti.</li>
             <li><strong>Cancellare</strong> il tuo account e i dati ad esso associati (Diritto all'oblio).</li>
             <li><strong>Opporti</strong> al trattamento dei tuoi dati per finalità di marketing.</li>
         </ul>
