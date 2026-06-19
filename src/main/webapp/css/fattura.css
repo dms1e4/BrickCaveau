@@ -222,3 +222,37 @@
         page-break-inside: avoid;
     }
 }
+
+@media (max-width: 768px){
+	.btn-toolbar {
+        padding: 0 15px;
+    }
+
+    .fattura-box {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+
+    .intestazione {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .allineamento-destra {
+        text-align: left; 
+    }
+
+
+    .tabella-prodotti {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch; /* scorrimento su mobile */
+    }
+
+   
+    .totale-definitivo {
+        font-size: 1.3rem;
+    }
+}

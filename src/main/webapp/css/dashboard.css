@@ -20,6 +20,7 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     padding: 20px;
     margin-bottom: 40px;
+    min-width: 0;
 }
 
 .mt-40 {
@@ -47,12 +48,15 @@
 
 .table-responsive {
     overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch; /* scroll su mobile */
 }
 
 .admin-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    min-width: 650px;
 }
 
 .admin-table th, .admin-table td {
