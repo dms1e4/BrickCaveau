@@ -349,6 +349,10 @@ input[type="range"] {
     display: block;
 }
 
+#nessun-risultato {
+	display: none;
+}
+
 
 /* MEDIA QUERY PER TABLET */
 
