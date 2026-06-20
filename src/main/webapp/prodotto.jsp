@@ -77,10 +77,10 @@
                             <p><strong>Disponibilità:</strong> 
                                 <c:choose>
                                     <c:when test="${prodotto.quantitaMagazzino > 0}">
-                                        <span style="color: green;">Disponibile (${prodotto.quantitaMagazzino} pz.)</span>
+                                        <span>Disponibile (${prodotto.quantitaMagazzino} pz.)</span>
                                     </c:when>
                                     <c:otherwise>
-                                        <span style="color: red;">Esaurito</span>
+                                        <span>Esaurito</span>
                                     </c:otherwise>
                                 </c:choose>
                             </p>

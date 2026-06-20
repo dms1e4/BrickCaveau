@@ -73,7 +73,7 @@
             
             <h2>Il Caveau: Tutti i Set Disponibili</h2>
 
-            <div id="nessun-risultato" style="display: none;" class="messaggio-vuoto">
+            <div id="nessun-risultato">
                 <h3>Nessun set LEGO corrisponde ai filtri selezionati.</h3>
                 <p>Prova a modificare i parametri di ricerca!</p>
             </div>

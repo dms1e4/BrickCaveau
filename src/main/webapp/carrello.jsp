@@ -18,7 +18,7 @@
         <%-- gestione errori --%>
         
         <c:if test="${not empty param.error}">
-            <div class="msg-errore" style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 4px; margin-bottom: 20px; font-weight: bold; border: 1px solid #f5c6cb;">
+            <div class="msg-errore">
                 Attenzione: ${param.error}
             </div>
         </c:if>

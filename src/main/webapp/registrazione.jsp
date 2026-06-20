@@ -34,7 +34,7 @@
             <span id="errorPassword" class="testo-errore"></span><br>
 
             <label for="telefono">Telefono:</label>
-            <div style="display: flex; gap: 5px;">
+            <div>
                 <select id="prefisso" name="prefisso">
                     <option value="+39" selected>🇮🇹 +39</option>
                     <option value="+378">🇸🇲 +378</option>

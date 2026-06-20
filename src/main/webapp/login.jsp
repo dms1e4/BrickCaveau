@@ -14,25 +14,28 @@
 
     <main class="login-container">
         <h2>Accedi al tuo Caveau</h2>
-        <%-- Messaggio di conferma post-registrazione --%>
-<c:if test="${param.status == 'registrato'}">
-    <p class="text-success">
-        Registrazione completata con successo! Ora puoi accedere.
-    </p>
-</c:if>
-<%-- Messaggio di login per accedere al carrello --%>
-<c:if test="${not empty param.error}">
-    <div class="carrello-errore">
-        ${param.error}
-    </div>
-</c:if>
-        <%-- Intercettazione degli errori dalla LoginServlet --%>
-        <c:if test="${param.error == 'invalid'}">
+        
+        <%-- ERRORI / MESSAGGI --%>
+		<c:if test="${param.status == 'registrato'}">
+		    <p class="text-success">
+		        Registrazione completata con successo! Ora puoi accedere.
+		    </p>
+		</c:if>
+		
+		<c:if test="${param.error == 'invalid'}">
             <p>Credenziali errate. Riprova.</p>
         </c:if>
+        
         <c:if test="${param.error == 'vuoti'}">
             <p>Per favore, compila tutti i campi.</p>
         </c:if>
+        
+		<%-- Messaggio se si accede al carrello da non loggati --%>
+		<c:if test="${not empty param.error}">
+		    <div class="carrello-errore">
+		        ${param.error}
+		    </div>
+		</c:if>
 
         <form action="${pageContext.request.contextPath}/loginServlet" method="POST">
             <label for="email">Indirizzo e-mail:</label>

@@ -76,8 +76,7 @@
                 <div>
                     <section class="card-profilo">
                         <h2>Il tuo Carrello</h2>
-                        <ul >
-                            <%-- Sostituito 'prodotti' con 'elementi' per allinearsi a getElementi() --%>
+                        <ul>
                             <c:forEach var="item" items="${sessionScope.carrello.elementi}">
                                 <li>
                                     <span>${item.prodotto.nome} (x${item.quantita})</span>
