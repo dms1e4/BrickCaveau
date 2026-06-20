@@ -25,6 +25,10 @@
 	margin-top: 20px;
 }
 
+.profilo-grid .card-profilo:last-child {
+    grid-column: 1 / -1;
+}
+
 /* ALERT E NOTIFICHE */
 
 .alert-successo, .alert-errore {
