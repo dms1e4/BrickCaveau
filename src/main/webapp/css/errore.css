@@ -2,34 +2,102 @@
 @import "style.css";
 
 main {
-	text-align: center;
-	padding: 100px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    min-height: 60vh;
 }
 
-h1 {
-	 font-size: 80px;
-	 color: #d32f2f;
-	 margin: 0;
+
+main h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 0;
+    color: var(--colore-primario);
+    line-height: 1;
+    text-shadow: 2px 4px 10px rgba(200, 16, 46, 0.2);
+    letter-spacing: -2px;
 }
 
-img {
-	max-width: 500px;
-	max-height: 281px;
+main img {
+    max-width: 100%;
+    width: 500px;
+    height: auto;
+    margin: 30px 0;
+    object-fit: contain;
 }
 
-h2 {
-	 margin-bottom: 20px;
+/* Titolo e Testo */
+main h2 {
+    font-size: 2.2rem;
+    color: var(--testo-p);
+    margin-top: 0;
+    margin-bottom: 15px;
 }
 
-div {
-	margin-top: 0px;
+main p {
+    font-size: 1.15rem;
+    color: var(--testo-s);
+    margin: 5px 0;
+    line-height: 1.6;
 }
 
-div a {
-	padding: 10px 20px;
-	text-decoration: none;
+main p strong {
+    color: var(--colore-primario);
+    font-weight: bold;
+}
+
+main > div {
+    margin-top: 35px;
 }
 
 .btn-primario {
-	border: solid red 5px;
+    display: inline-block;
+    background-color: var(--colore-primario);
+    color: #FFFFFF;
+    padding: 14px 30px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(200, 16, 46, 0.2);
+}
+
+.btn-primario:hover {
+    background-color: #A30D25;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(200, 16, 46, 0.3);
+    color: #FFFFFF;
+}
+
+/* MEDIA QUERY MOBILE */
+
+@media (max-width: 768px) {
+    main {
+        padding: 40px 15px;
+        min-height: 50vh;
+    }
+
+    main h1 {
+        font-size: 5rem;
+    }
+
+    main img {
+        width: 180px;
+        margin: 20px 0;
+    }
+
+    main h2 {
+        font-size: 1.8rem;
+    }
+
+    main p {
+        font-size: 1rem;
+    }
 }
