@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     
-    // 1. CATTURA TUTTI GLI ELEMENTI HTML
+    // catturo gli elementi dei filtri
     const checkboxesTema = document.querySelectorAll(".filtro-tema");
     const sliderUscita = document.getElementById("sliderUscita");
     const spanValoreUscita = document.getElementById("valoreUscita");
@@ -9,15 +9,16 @@ document.addEventListener("DOMContentLoaded", function() {
     const sliderPezzi = document.getElementById("sliderPezzi");
     const spanValorePezzi = document.getElementById("valorePezzi");
     
-    // Elementi per Ordinamento
+    // catturo le condizioni di ordinamento
     const selectOrdinamento = document.getElementById("ordinamento");
     const grigliaCatalogo = document.querySelector(".grid-catalogo");
     
+	// carico i bottoni e gli elementi presenti nella pagina
     const btnReset = document.getElementById("btnReset");
     const cards = document.querySelectorAll(".card-prodotto");
     const boxNessunRisultato = document.getElementById("nessun-risultato");
 
-    // 2. FUNZIONE DI FILTRAGGIO LIVE (Mostra/Nascondi)
+    // filtri live (mostra/nascondi)
     function applicaFiltri() {
         const temiSelezionati = Array.from(checkboxesTema).filter(cb => cb.checked).map(cb => cb.value);
         const minUscitaVal = parseInt(sliderUscita.value);
@@ -68,16 +69,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // 3. FUNZIONE DI ORDINAMENTO MAGIC
+    // funzione di ordinamento delle card prodotto
     function ordinaCards() {
-        // Se per caso la griglia non c'è (es. database vuoto), ferma tutto
         if (!grigliaCatalogo) return; 
 
-        // Creiamo un array con tutte le card visibili o invisibili
+        // array con tutte le card
         let cardsArray = Array.from(grigliaCatalogo.querySelectorAll('.card-prodotto'));
         const criterio = selectOrdinamento.value;
 
-        // Ordiniamo l'array
+        // ordino l'array
         cardsArray.sort((a, b) => {
             if (criterio === 'nome-asc') {
                 return a.dataset.nome.localeCompare(b.dataset.nome);
@@ -95,36 +95,35 @@ document.addEventListener("DOMContentLoaded", function() {
             return 0;
         });
 
-        // Svuotiamo la griglia e ri-appendiamo le card ordinate
+        // svuoto la griglia precedente e aggiungo le card nell'ordine corretto
         grigliaCatalogo.innerHTML = '';
         cardsArray.forEach(card => grigliaCatalogo.appendChild(card));
     }
 
 
-    // 4. EVENT LISTENERS (Quelli che fanno scattare le funzioni)
+    // event listeners
     checkboxesTema.forEach(cb => cb.addEventListener("change", applicaFiltri));
     sliderUscita.addEventListener("input", applicaFiltri);
     sliderRitiro.addEventListener("input", applicaFiltri);
     sliderPezzi.addEventListener("input", applicaFiltri);
     
-    // Quando l'utente cambia opzione nella tendina, ordina le card
     if(selectOrdinamento) {
         selectOrdinamento.addEventListener("change", ordinaCards);
     }
 
-    // Tasto "Azzera Filtri"
+    // tasto "azzera filtri"
     if (btnReset) {
         btnReset.addEventListener("click", function() {
             checkboxesTema.forEach(cb => cb.checked = false);
             sliderUscita.value = 2000;
             sliderRitiro.value = 2026;
-            sliderPezzi.value = 5000; // Torna a 5000
-            selectOrdinamento.value = "nome-asc"; // Torna all'ordinamento di default
+            sliderPezzi.value = 5000;
+            selectOrdinamento.value = "nome-asc"; // torna all'ordinamento di default
             applicaFiltri();
             ordinaCards();
         });
     }
 
-    // APPENA CARICA LA PAGINA: Mette i prodotti in ordine alfabetico (Nome A-Z)
+    // di default, ordine alfabetico
     ordinaCards();
 });

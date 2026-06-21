@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const btnReset = document.getElementById("btnResetOrdini");
     const tabellaBody = document.getElementById("tabellaOrdiniBody");
     
-    // Recuperiamo il contextPath in modo sicuro al 100% dal form HTML
     const contextPath = formFiltri.getAttribute("data-context") || "";
 
-    // Funzione che scarica e disegna gli ordini
     function caricaOrdini(params = {}) {
         // Costruiamo l'URL in modo relativo (sicuro su ogni server)
         const url = new URL(window.location.origin + contextPath + "/admin/api/ordini");
@@ -17,14 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         fetch(url)
             .then(response => {
-                // Se la Servlet non viene trovata (404) o va in crash (500), blocchiamo tutto prima di leggere il JSON!
                 if (!response.ok) {
                     throw new Error("Errore Server: " + response.status);
                 }
                 return response.json();
             })
             .then(ordini => {
-                tabellaBody.innerHTML = ""; // Pulisco
+                tabellaBody.innerHTML = ""; // pulisco il body della tabella
 
                 if(ordini.length === 0) {
                     tabellaBody.innerHTML = '<tr><td class="non-trovato" colspan="5">Nessun ordine trovato.</td></tr>';
@@ -49,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function() {
             });
     }
 
-    // Caricamento iniziale
     caricaOrdini(); 
 
     // Evento Submit Filtri
@@ -62,7 +58,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Evento Reset
     btnReset.addEventListener("click", () => {
         document.getElementById("dataInizio").value = "";
         document.getElementById("dataFine").value = "";

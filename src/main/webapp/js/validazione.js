@@ -13,22 +13,22 @@ document.addEventListener("DOMContentLoaded", function() {
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&._-])[A-Za-z\d@$!%*?&._-]{8,}$/; // Minimo 8 caratteri, almeno 1 lettera maiuscola, 1 numero, 1 carattere speciale
     const regexTelefono = /^[0-9]{9,10}$/; // 9-10 cifre senza prefisso
     
-    /*chiamata Fetch API*/
+    // chiamata Fetch API
     
     // L'evento 'blur' scatta non appena l'utente clicca fuori dal campo email
     emailInput.addEventListener("blur", function() {
         const emailValue = emailInput.value.trim();
         
-        // Se il campo è vuoto, puliamo il feedback e ci fermiamo
+        // campo vuoto, pulisco e ritorno
         if (emailValue.length === 0) {
             emailFeedback.textContent = "";
             return;
         }
 
-        // Controllo Regex PRIMA di interrogare il server
+        // controllo senza interrogare il server
         if (!regexEmail.test(emailValue)) {
             emailFeedback.textContent = "Formato email non valido (es. manca @ o dominio).";
-            emailFeedback.style.color = "#DC2626";
+            emailFeedback.style.color = "var(--errore)";
             return;
         }
         
@@ -41,10 +41,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Leggiamo il valore booleano 'esiste' dal JSON
                 if (data.esiste) {
                     emailFeedback.textContent = "Attenzione: questa email è già registrata!";
-                    emailFeedback.style.color = "#DC2626"; // feedback negativo
+                    emailFeedback.style.color = "var(--errore)"; // feedback negativo
                 } else {
                     emailFeedback.textContent = "Email disponibile!";
-                    emailFeedback.style.color = "#16A34A"; // feedback positivo
+                    emailFeedback.style.color = "var(--successo)"; // feedback positivo
                 }
             })
             .catch(error => {
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Controllo Email
         if (!regexEmail.test(emailInput.value.trim())) {
             emailFeedback.textContent = "Formato email non valido.";
-            emailFeedback.style.color = "#DC2626";
+            emailFeedback.style.color = "var(--errore)";
             formValido = false;
             if (!primoCampoErrato) primoCampoErrato = emailInput;
         }
