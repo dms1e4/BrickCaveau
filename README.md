@@ -56,3 +56,14 @@ Il progetto utilizza un DataSource JNDI per gestire le connessioni al database i
               driverClassName="com.mysql.cj.jdbc.Driver" 
               url="jdbc:mysql://localhost:3306/BrickCaveau?serverTimezone=UTC"/>
 </Context>
+```
+
+### 5. Configurazione Database utenti
+Nello script di popolamento (queryins.sql), sono stati inseriti due utenti di esempio per testare le funzionalità del sito.
+Le credenziali per accedervi sono:<br>
+``E-mail: utente@utente.it`` <br>
+``Password: Prova123!``
+<br><br>
+Mentre per il profilo con permessi di amministratore:<br>
+``E-mail: admin@admin.it`` <br>
+``Password: Admin123!``
