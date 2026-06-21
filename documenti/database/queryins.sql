@@ -67,3 +67,74 @@ INSERT INTO Indirizzo (N_Civico, Via, Citta, CAP, Provincia, Nazione, Utente_ID)
 
 INSERT INTO MetodoPagamento (Scadenza, Tipo, Ultime4Cifre, Utente_ID) VALUES
 ('2028-12-31', 'Carta di Credito', '4242', @cliente_id);
+
+-- INSERIMENTO ALTRI UTENTI, CON ORDINI E RECENSIONI
+
+
+
+-- inserimento utenti (stessa psw dell'utente inserito sopra)
+INSERT INTO Utente (Nome, Cognome, Email, Password, Telefono, is_Admin) VALUES
+('Luigi', 'Verdi', 'luigi@utente.it', '4110c46403834b5faea62c8e8211873b10691f865cd2d376aab2d59356c119bd', '3339876543', FALSE),
+('Giulia', 'Bianchi', 'giulia@utente.it', '4110c46403834b5faea62c8e8211873b10691f865cd2d376aab2d59356c119bd', '3334567890', FALSE);
+
+SET @luigi_id = (SELECT ID_Utente FROM Utente WHERE Email = 'luigi@utente.it');
+SET @giulia_id = (SELECT ID_Utente FROM Utente WHERE Email = 'giulia@utente.it');
+SET @utente_prova_id = (SELECT ID_Utente FROM Utente WHERE Email = 'utente@utente.it');
+
+-- 2. Aggiungiamo indirizzi e metodi di pagamento per Luigi e Giulia
+INSERT INTO Indirizzo (N_Civico, Via, Citta, CAP, Provincia, Nazione, Utente_ID) VALUES
+('45', 'Via Milano', 'Milano', '20100', 'MI', 'Italia', @luigi_id),
+('8', 'Piazza Venezia', 'Roma', '00186', 'RM', 'Italia', @giulia_id);
+
+SET @ind_luigi = (SELECT ID FROM Indirizzo WHERE Utente_ID = @luigi_id LIMIT 1);
+SET @ind_giulia = (SELECT ID FROM Indirizzo WHERE Utente_ID = @giulia_id LIMIT 1);
+SET @ind_utente = (SELECT ID FROM Indirizzo WHERE Utente_ID = @utente_prova_id LIMIT 1);
+
+INSERT INTO MetodoPagamento (Scadenza, Tipo, Ultime4Cifre, Utente_ID) VALUES
+('2027-10-31', 'Carta di Credito', '1111', @luigi_id),
+('2029-05-31', 'Carta di Credito', '9999', @giulia_id);
+
+SET @pag_luigi = (SELECT ID FROM MetodoPagamento WHERE Utente_ID = @luigi_id LIMIT 1);
+SET @pag_giulia = (SELECT ID FROM MetodoPagamento WHERE Utente_ID = @giulia_id LIMIT 1);
+SET @pag_utente = (SELECT ID FROM MetodoPagamento WHERE Utente_ID = @utente_prova_id LIMIT 1);
+
+-- creazione degli ordini con fasi diverse
+INSERT INTO Ordine (Totale, Stato_Spedizione, Data_Acquisto, Utente_ID, Indirizzo_ID, MetodoPagamento_ID) VALUES
+(164.98, 'Consegnato', '2025-11-10', @luigi_id, @ind_luigi, @pag_luigi);
+SET @ordine1_id = LAST_INSERT_ID();
+
+
+INSERT INTO Ordine (Totale, Stato_Spedizione, Data_Acquisto, Utente_ID, Indirizzo_ID, MetodoPagamento_ID) VALUES
+(136.99, 'In Lavorazione...', '2026-06-15', @luigi_id, @ind_luigi, @pag_luigi);
+SET @ordine2_id = LAST_INSERT_ID();
+
+
+INSERT INTO Ordine (Totale, Stato_Spedizione, Data_Acquisto, Utente_ID, Indirizzo_ID, MetodoPagamento_ID) VALUES
+(509.99, 'Spedito', '2026-06-18', @giulia_id, @ind_giulia, @pag_giulia);
+SET @ordine3_id = LAST_INSERT_ID();
+
+
+INSERT INTO Ordine (Totale, Stato_Spedizione, Data_Acquisto, Utente_ID, Indirizzo_ID, MetodoPagamento_ID) VALUES
+(684.99, 'Consegnato', '2026-01-20', @utente_prova_id, @ind_utente, @pag_utente);
+SET @ordine4_id = LAST_INSERT_ID();
+
+-- inserimento dettagli ordini
+
+INSERT INTO Dettaglio_Ordine (Ordine_ID, Codice_Set, Quantita, Prezzo_Acquisto, IVA) VALUES
+(@ordine1_id, 4701, 1, 64.99, 22.00),   -- Cappello Parlante
+(@ordine1_id, 75828, 1, 99.99, 22.00);  -- Ecto-1 & 2
+
+INSERT INTO Dettaglio_Ordine (Ordine_ID, Codice_Set, Quantita, Prezzo_Acquisto, IVA) VALUES
+(@ordine2_id, 77015, 1, 136.99, 22.00); -- Tempio Idolo d'oro
+
+INSERT INTO Dettaglio_Ordine (Ordine_ID, Codice_Set, Quantita, Prezzo_Acquisto, IVA) VALUES
+(@ordine3_id, 71016, 1, 509.99, 22.00); -- Jet Market The Simpsons
+
+INSERT INTO Dettaglio_Ordine (Ordine_ID, Codice_Set, Quantita, Prezzo_Acquisto, IVA) VALUES
+(@ordine4_id, 10188, 1, 684.99, 22.00); -- Death Star
+
+-- recensioni
+INSERT INTO Recensione (Utente_ID, Codice_Set, Rating, Testo, Data_Recensione) VALUES
+(@luigi_id, 4701, 5, 'Un set storico! Il meccanismo del cappello è geniale. Spedizione velocissima, grazie BrickCaveau!', '2025-11-15'),
+(@utente_prova_id, 10188, 4, 'La Morte Nera è un capolavoro assoluto. Costruzione lunghissima ma soddisfacente. Metto 4 stelle solo perché la scatola è arrivata un po'' ammaccata, ma il set interno è perfetto.', '2026-02-01');
+
