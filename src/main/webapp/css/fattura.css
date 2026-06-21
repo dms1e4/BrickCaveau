@@ -38,7 +38,7 @@
     box-sizing: border-box;
 }
 
-/* --- INTESTAZIONE --- */
+/* INTESTAZIONE */
 .intestazione {
     display: flex;
     justify-content: space-between;
@@ -102,7 +102,7 @@
     font-size: 1rem;
 }
 
-/* --- TABELLA PRODOTTI --- */
+/* TABELLA PRODOTTI */
 .tabella-prodotti {
     width: 100%;
     border-collapse: collapse;
