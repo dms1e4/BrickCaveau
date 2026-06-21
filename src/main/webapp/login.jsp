@@ -23,11 +23,11 @@
 		</c:if>
 		
 		<c:if test="${param.error == 'invalid'}">
-            <p>Credenziali errate. Riprova.</p>
+            <p class="carrello-errore">Credenziali errate. Riprova.</p>
         </c:if>
         
         <c:if test="${param.error == 'vuoti'}">
-            <p>Per favore, compila tutti i campi.</p>
+            <p class="carrello-errore">Per favore, compila tutti i campi.</p>
         </c:if>
         
 		<%-- Messaggio se si accede al carrello da non loggati --%>

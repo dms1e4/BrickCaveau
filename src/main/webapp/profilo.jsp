@@ -178,7 +178,7 @@
                 <c:choose>
                     <c:when test="${empty listaOrdiniCliente}">
                         <p>Non hai ancora effettuato ordini. Il tuo carrello aspetta nuovi set LEGO!</p>
-                        <a href="${pageContext.request.contextPath}/catalogoServlet" class="vai-catalogo">Vai al Catalogo</a>
+                        <a href="${pageContext.request.contextPath}/catalogoServlet" class="btn-primario">Vai al Catalogo</a>
                     </c:when>
                     <c:otherwise>
                         <div>
