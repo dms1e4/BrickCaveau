@@ -13,12 +13,12 @@
     <jsp:include page="/fragments/header.jsp" />
 
     <main class="dashboard-container">
-        <div class="dashboard-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+        <div class="dashboard-header">
             <div>
                 <h1>Dettaglio Ordine #${ordine.id}</h1>
                 <p>Gestione e riepilogo delle informazioni dell'acquisto.</p>
             </div>
-            <a href="${pageContext.request.contextPath}/admin/dashboardServlet" class="btn-azione btn-secondario" style="background-color: #64748B; color: white; text-decoration: none; padding: 10px 15px; border-radius: 4px;">
+            <a href="${pageContext.request.contextPath}/admin/dashboardServlet" class="btn-azione btn-secondario">
                 ← Torna alla Dashboard
             </a>
         </div>
@@ -26,22 +26,22 @@
         <div class="dettaglio-grid">
             
             <div class="info-card">
-                <h3 style="margin-top:0; border-bottom: 2px solid #E2E8F0; padding-bottom: 8px; color:#1E293B;">Dati Riepilogo</h3>
+                <h3>Dati Riepilogo</h3>
                 
                 <p><strong>Cliente:</strong> ${cliente.nome} ${cliente.cognome}</p>
                 <p><strong>Email:</strong> ${cliente.email}</p>
                 <p><strong>ID Utente nel Sistema:</strong> #${ordine.utenteId}</p>
-                <hr style="border: 0; border-top: 1px solid #E2E8F0; margin: 15px 0;">
+                <hr>
                 <p><strong>Data Acquisto:</strong> ${ordine.dataOrdine}</p>
                 <p><strong>Stato Spedizione:</strong> 
-                    <span style="background: #E0F2FE; color: #0369A1; padding: 3px 8px; border-radius: 12px; font-size: 0.85rem; font-weight: bold;">
+                    <span>
                         ${empty ordine.statoSpedizione ? 'In Elaborazione' : ordine.statoSpedizione}
                     </span>
                 </p>
             </div>
 
-            <section class="admin-section" style="margin: 0;">
-                <h3 style="margin-top:0; margin-bottom: 15px; color:#1E293B;">Set Acquistati</h3>
+            <section class="admin-section">
+                <h3>Set Acquistati</h3>
                 <div class="table-responsive">
                     <table class="admin-table">
                         <thead>
@@ -57,7 +57,7 @@
                             <c:forEach var="item" items="${dettagli}">
                                 <tr>
                                     <td>#${item.codiceSet}</td>
-                                    <td style="font-weight: 500;">${item.nomeSet}</td>
+                                    <td>${item.nomeSet}</td>
                                     <td>x${item.quantita}</td>
                                     <td>€ ${item.prezzoAcquisto}</td>
                                     <td>${item.iva}%</td>
@@ -65,9 +65,9 @@
                             </c:forEach>
                         </tbody>
                         <tfoot>
-                            <tr style="background: #F1F5F9;">
-                                <td colspan="4" style="text-align: right; font-weight: bold; padding: 15px;">Totale Complessivo:</td>
-                                <td class="totale-evidenziato" style="padding: 15px;">€ ${ordine.totale}</td>
+                            <tr>
+                                <td colspan="4">Totale Complessivo:</td>
+                                <td class="totale-evidenziato">€ ${ordine.totale}</td>
                             </tr>
                         </tfoot>
                     </table>
