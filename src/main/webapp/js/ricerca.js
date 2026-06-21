@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!searchInput || !searchForm) return;
 
     const contextPath = searchForm.getAttribute("data-context") || "";
-    console.log("Ricerca iniziale. Context Path rilevato: " + contextPath); // Vedrai questo nel log di F12!
+    console.log("Ricerca iniziale. Context Path rilevato: " + contextPath);
 
     searchInput.addEventListener('keyup', function(e) {
         const query = e.target.value.trim();

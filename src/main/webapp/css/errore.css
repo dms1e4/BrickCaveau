@@ -32,7 +32,6 @@ main img {
     object-fit: contain;
 }
 
-/* Titolo e Testo */
 main h2 {
     font-size: 2.2rem;
     color: var(--testo-p);
