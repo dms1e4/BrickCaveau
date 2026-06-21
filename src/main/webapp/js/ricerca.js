@@ -3,19 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultBox = document.getElementById("searchResults");
     const searchForm = document.querySelector('.search-form');
 
-    // Controllo di sicurezza: se in una pagina non c'è la barra, non crashare
     if (!searchInput || !searchForm) return;
 
-    // 🔥 RECUPERIAMO IL PERCORSO CORRETTO DAL FORM HTML
     const contextPath = searchForm.getAttribute("data-context") || "";
     console.log("Ricerca iniziale. Context Path rilevato: " + contextPath); // Vedrai questo nel log di F12!
 
-    // Quando l'utente scrive
     searchInput.addEventListener('keyup', function(e) {
         const query = e.target.value.trim();
 
         if (query.length > 0) {
-            // 🔥 URL DINAMICO: Ora punta SEMPRE alla Servlet corretta senza sbagliare cartella
             fetch(`${contextPath}/ricercaAjax?q=${encodeURIComponent(query)}`)
                 .then(response => {
                     if (!response.ok) throw new Error("Errore Servlet: " + response.status);
@@ -35,14 +31,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Chiudi la tendina se clicchi fuori
     document.addEventListener('click', (event) => {
         if (!searchForm.contains(event.target)) {
             resultBox.hidden = true;
         }
     });
 
-    // Riapri la tendina se rifocalizzi la barra con testo dentro
     searchInput.addEventListener('focusin', function () {
         if (searchInput.value.trim().length > 0) {
             resultBox.hidden = false;
@@ -55,7 +49,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	            return;
 	        }
 	        
-	        // Struttura HTML con Immagine e Codice
 	        let html = prodotti.map(p => 
 	            `<a href="${contextPath}/ProdottoServlet?id=${p.id}" class="suggestion-item">
 	                
