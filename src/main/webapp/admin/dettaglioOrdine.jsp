@@ -7,37 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dettaglio Ordine #${ordine.id} - BrickCaveau</title>
     <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon1.ico">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
-    <style>
-        .dettaglio-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 25px;
-            margin-top: 20px;
-        }
-        @media (max-width: 768px) {
-            .dettaglio-grid { grid-template-columns: 1fr; }
-        }
-        .info-card {
-            background: #F8F9FA;
-            border: 1px solid #E2E8F0;
-            border-radius: 8px;
-            padding: 20px;
-        }
-        .info-card p {
-            margin: 10px 0;
-            font-size: 0.95rem;
-            color: #334155;
-        }
-        .info-card strong {
-            color: #1E293B;
-        }
-        .totale-evidenziato {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #2563EB;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dettaglioOrdine.css">
 </head>
 <body>
     <jsp:include page="/fragments/header.jsp" />
