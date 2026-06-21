@@ -67,3 +67,5 @@ Le credenziali per accedervi sono:<br>
 Mentre per il profilo con permessi di amministratore:<br>
 ``E-mail: admin@admin.it`` <br>
 ``Password: Admin123!``
+<br><br>
+Inoltre, ci sono altri due utenti "fittizi" che hanno effettuato ordini e inserito recensioni, così da riempire la tabella ordini nella Dashboard Admin.
