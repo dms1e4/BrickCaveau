@@ -40,7 +40,6 @@ main > h1 {
     padding: 0;
     line-height: 1;
     
-    /* disattiva sfondo blu di selezioni su dispositivi mobile */
     -webkit-tap-highlight-color: transparent; 
 }
 
@@ -100,42 +99,38 @@ main > h1 {
 /* LAYOUT PULSANTI */
 .azioni-prodotto {
     display: flex;
-    justify-content: space-between; /* Spinge "Dettagli" a sinistra e il form a destra */
+    justify-content: space-between; 
     align-items: center;
     gap: 10px;
     margin-top: 15px;
 }
 
-/* Evitiamo che il form aggiunga margini strani e lo rendiamo flessibile */
+
 .azioni-prodotto form {
     margin: 0;
     display: flex;
 }
 
-/* =========================================
-   MEDIA QUERIES (Mobile & Tablet)
-   ========================================= */
+/* MEDIA QUERIES */
 @media screen and (max-width: 768px) {
     
-    /* 1. Incolonniamo gli elementi */
+    
     .azioni-prodotto {
         flex-direction: column;
         width: 100%;
     }
 
-    /* 2. Link Dettagli e Form devono prendere tutta la larghezza */
+    
     .azioni-prodotto > a.btn-secondario,
     .azioni-prodotto form {
         width: 100%;
         margin-bottom: 8px; /* Spazio tra i due bottoni */
     }
 
-    /* Rimuoviamo il margine dall'ultimo elemento (il form) */
     .azioni-prodotto form {
         margin-bottom: 0;
     }
 
-    /* 3. I bottoni si allargano e centrano il contenuto */
     .azioni-prodotto .btn-secondario,
     .azioni-prodotto form .btn-primario {
         width: 100%;
@@ -143,16 +138,14 @@ main > h1 {
         justify-content: center;
         align-items: center;
         box-sizing: border-box;
-        padding: 12px; /* Area di tap più grande per i pollici */
+        padding: 12px;
     }
 
-    /* 4. Aggiustiamo il titolo principale */
     main > h1 {
         font-size: 1.6rem;
         margin-bottom: 25px;
     }
 
-    /* 5. Rendiamo la modale del messaggio vuoto più compatta */
     .messaggio-vuoto {
         padding: 30px 15px;
         margin: 10px;
@@ -167,9 +160,6 @@ main > h1 {
     }
 }
 
-/* =========================================
-   SMARTPHONE MOLTO PICCOLI (< 480px)
-   ========================================= */
 @media screen and (max-width: 480px) {
     main {
         padding: 0 15px;
