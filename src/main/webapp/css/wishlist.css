@@ -97,9 +97,7 @@ main > h1 {
     font-size: 1.1rem;
 }
 
-/* =========================================
-   LAYOUT PULSANTI (Base / Desktop)
-   ========================================= */
+/* LAYOUT PULSANTI */
 .azioni-prodotto {
     display: flex;
     justify-content: space-between; /* Spinge "Dettagli" a sinistra e il form a destra */
