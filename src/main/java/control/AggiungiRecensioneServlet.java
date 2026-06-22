@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -12,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import model.Recensione.RecensioneBean;
-import model.Recensione.RecensioneDAO;
+import model.Recensione.*;
 import model.Utente.UtenteBean;
 
 @WebServlet("/AggiungiRecensioneServlet")

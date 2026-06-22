@@ -43,10 +43,10 @@ public class DashboardServlet extends HttpServlet {
             SetLegoDAO setDAO = new SetLegoDAO(ds);
             OrdineDAO ordineDAO = new OrdineDAO(ds);
 
-            // 1. Catalogo completo (non filtrato qui)
+            // catalogo completo senza filtri
             Collection<SetLegoBean> listaProdotti = setDAO.doRetrieveAll("Codice_Set ASC");
             
-            // 2. Catturo i parametri di filtro dal form della Dashboard
+            // catturo i parametri del form
             String dataInizio = request.getParameter("dataInizio");
             String dataFine = request.getParameter("dataFine");
             String idUtenteStr = request.getParameter("utenteId");
@@ -59,11 +59,11 @@ public class DashboardServlet extends HttpServlet {
                     utenteId = null; // ignoro se l'admin ha inserito lettere per sbaglio
                 }
             }
-
-            // 3. Uso il metodo avanzato del tuo OrdineDAO al posto di doRetrieveAll
+            
+            // ottengo la lista con i parametri stabiliti
             Collection<OrdineBean> listaOrdini = ordineDAO.doRetrieveWithFiltersAdmin(dataInizio, dataFine, utenteId);
 
-            // 4. Salvo tutto nella request
+            // salvo nella request
             request.setAttribute("listaProdottiAdmin", listaProdotti);
             request.setAttribute("listaOrdiniAdmin", listaOrdini);
 
