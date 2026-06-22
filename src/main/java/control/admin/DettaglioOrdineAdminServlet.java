@@ -48,20 +48,20 @@ public class DettaglioOrdineAdminServlet extends HttpServlet {
             int idOrdine = Integer.parseInt(idStr);
             OrdineDAO ordineDAO = new OrdineDAO(ds);
 
-            // 1. Recupero l'ordine principale
+            // recupero l'ordine
             OrdineBean ordine = ordineDAO.doRetrieveByKey(idOrdine);
             if (ordine == null) {
                 response.sendError(HttpServletResponse.SC_NOT_FOUND, "Ordine non trovato");
                 return;
             }
 
-            // 2. Recupero i prodotti associati (i set lego inseriti)
+            // recupero i set lego inseriti
             Collection<DettaglioOrdineBean> dettagli = ordineDAO.doRetrieveDettagliByOrdine(idOrdine);
 
-            // 3. Recupero le informazioni del cliente
+            // recupero le info del cliente
             Map<String, String> cliente = ordineDAO.doRetrieveClienteInfoByOrdine(idOrdine);
 
-            // Passo tutto alla pagina JSP
+            // passo tutto alla pagina JSP
             request.setAttribute("ordine", ordine);
             request.setAttribute("dettagli", dettagli);
             request.setAttribute("cliente", cliente);

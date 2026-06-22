@@ -55,7 +55,7 @@ public class OrdiniApiServlet extends HttpServlet {
             OrdineDAO ordineDAO = new OrdineDAO(ds);
             Collection<OrdineBean> listaOrdini = ordineDAO.doRetrieveWithFiltersAdmin(dataInizio, dataFine, utenteId);
 
-            // Costruisco la stringa JSON manualmente (come hai fatto in RicercaAjax)
+            // Costruisco la stringa JSON manualmente
             StringBuilder json = new StringBuilder("[");
             int count = 0;
             for (OrdineBean o : listaOrdini) {
